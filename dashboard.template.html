@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Football Dashboard</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #14271e;
+    --muted: #53655c;
+    --line: #dce5de;
+    --paper: #fff;
+    --green: #12664a;
+    --wash: #edf7ef;
+    --mono: "Cascadia Mono", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f3f6f2; color: var(--ink); font: 14px/1.5 "Segoe UI", system-ui, sans-serif; }
+  button, select { font: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid #308866; outline-offset: 3px; }
+  .wrap { width: min(1480px, calc(100% - 64px)); margin-inline: auto; }
+  header { background: #10291f; color: #fff; overflow: hidden; }
+  .mast { position: relative; display: flex; justify-content: space-between; align-items: end; gap: 24px; padding: 31px 0 35px; }
+  .mast > * { position: relative; z-index: 1; }
+  .pitch { position: absolute; inset: -52px 84px auto auto; width: 370px; height: 260px; z-index: 0; opacity: .18; pointer-events: none; }
+  .eyebrow { font: 700 11px/1.5 var(--mono); text-transform: uppercase; letter-spacing: .13em; color: var(--green); }
+  header .eyebrow { color: #a6efb7; }
+  h1, h2, h3, p { margin: 0; }
+  h1 { margin: 5px 0 4px; font-size: clamp(34px, 5vw, 55px); line-height: 1.08; letter-spacing: -.055em; }
+  header p { color: #d0e2d7; }
+  .button { border: 1px solid #aacbb9; padding: 8px 14px; border-radius: 8px; color: white; background: #214635; white-space: nowrap; font-weight: 650; }
+  .button:hover { background: #305c47; }
+  .navigation { border-bottom: 1px solid var(--line); background: var(--paper); }
+  .nav-inner { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; }
+  #leagues { display: flex; gap: 2px; flex-wrap: wrap; }
+  #leagues button { padding: 15px 13px 13px; border: 0; border-bottom: 3px solid transparent; color: var(--muted); background: transparent; font-weight: 650; }
+  #leagues button[aria-pressed="true"] { color: var(--green); border-bottom-color: var(--green); background: var(--wash); }
+  #leagues button:hover { background: var(--wash); }
+  label { color: var(--muted); font-size: 13px; font-weight: 650; }
+  select { margin-left: 5px; border: 1px solid #b9c9be; border-radius: 7px; padding: 5px 8px; color: var(--ink); background: var(--paper); }
+  main { padding-top: 24px; padding-bottom: 38px; }
+  .summary { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+  .scoreline-heading { display: flex; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; margin-bottom: 7px; }
+  .scoreline-heading h2 { font-size: 15px; }
+  .card, .panel { background: var(--paper); border: 1px solid var(--line); border-radius: 13px; }
+  .card { padding: 8px 12px; }
+  .card .eyebrow { font-size: 10px; }
+  .card .note { font-size: 11px; line-height: 1.4; }
+  .card strong { display: block; font-size: 20px; line-height: 1.1; letter-spacing: -.035em; margin: 3px 0 2px; font-variant-numeric: tabular-nums; }
+  .note { color: var(--muted); font-size: 12px; }
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(290px, 335px); gap: 16px; align-items: start; }
+  .section-head { padding: 15px 17px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px 14px; flex-wrap: wrap; }
+  h2 { font-size: 21px; line-height: 1.2; letter-spacing: -.025em; }
+  h3 { font-size: 15px; line-height: 1.3; }
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  th, td { text-align: center; padding: 8px 6px; border-bottom: 1px solid #edf1ed; }
+  th:first-child, td:first-child { padding-left: 13px; }
+  th:last-child, td:last-child { padding-right: 13px; }
+  th { background: #f3f7f3; color: var(--muted); font-size: 11px; font-weight: 750; }
+  th button { padding: 1px; color: inherit; border: 0; background: none; font-weight: inherit; }
+  th[aria-sort] { color: var(--green); }
+  td { font-size: 13px; }
+  tr:hover td, tr.active td { background: #f0f8f1; }
+  td:first-child { color: var(--muted); font-family: var(--mono); font-size: 12px; }
+  .club { text-align: left; white-space: normal; min-width: 100px; }
+  .club button { text-align: left; padding: 3px 1px; border: 0; background: transparent; color: var(--ink); font-weight: 700; }
+  .club button:hover, .club button[aria-pressed="true"] { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+  .pts { font-weight: 800; }
+  .ppg-low { color: #a52d25; font-weight: 750; }
+  .ppg-high { color: #12664a; font-weight: 750; }
+  .form { display: inline-flex; gap: 2px; }
+  .badge { display: inline-grid; place-items: center; min-width: 16px; height: 19px; padding: 0 3px; border-radius: 4px; font: 700 10px/1 var(--mono); }
+  .W { background: #d8f0de; color: #14553a; }
+  .D { background: #f6ebcd; color: #664817; }
+  .L { background: #f8e1dd; color: #8b3428; }
+  .rate { display: inline-grid; gap: 3px; min-width: 33px; font-weight: 650; }
+  .bar { height: 3px; border-radius: 6px; background: #e5eee7; }
+  .bar i { display: block; height: 100%; border-radius: inherit; background: #34865d; }
+  .legend { padding: 10px 16px; }
+  #points-adjustments { padding-top: 0; }
+  aside.panel { overflow: hidden; }
+  .club-head { padding: 16px; background: #e9f5eb; border-bottom: 1px solid var(--line); }
+  .club-head h2 { margin: 4px 0; }
+  .club-picker { display: none; }
+  .club-body { padding: 14px 16px 16px; }
+  .club-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 16px; }
+  .club-stats div { padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; }
+  .club-stats strong { display: block; font-size: 18px; }
+  ul.matches { list-style: none; margin: 6px 0 0; padding: 0; }
+  .matches li { display: flex; justify-content: space-between; align-items: center; gap: 6px; padding: 7px 0; border-bottom: 1px solid #edf1ed; }
+  .matches strong { display: block; font-size: 13px; }
+  .venue { display: inline-block; margin-right: 4px; min-width: 15px; color: var(--muted); font: 700 11px var(--mono); }
+  .match-meta { flex: none; text-align: right; }
+  details { margin-top: 12px; }
+  summary { cursor: pointer; color: var(--green); font-weight: 650; }
+  details p { margin-top: 6px; }
+  .coverage { padding: 9px 13px; margin-bottom: 14px; background: #f8efda; border: 1px solid #e4d4aa; border-radius: 8px; color: #5e461d; }
+  .sources { padding: 0 3px; }
+  .empty { margin-top: 7px; }
+  [hidden] { display: none !important; }
+  .bets-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+  .bets-grid .panel { min-width: 0; }
+  .bets-intro { padding: 18px; background: #e9f5eb; }
+  .bets-intro p { margin-top: 6px; max-width: 940px; }
+  .bets-controls { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 14px; }
+  .bets-table td { vertical-align: top; }
+  .bets-table .fixture-cell { text-align: left; white-space: normal; min-width: 180px; }
+  .bets-table .fixture-cell strong, .bets-table .fixture-cell small { display: block; }
+  .bets-table .fixture-cell small { color: var(--muted); font-size: 11px; }
+  .bets-wide { margin-top: 16px; }
+  @media (max-width: 1130px) {
+    .summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    aside.panel { grid-row: 1; }
+    .club-picker { display: block; margin-top: 8px; }
+    .club-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+    .club-stats { margin-bottom: 0; align-content: start; }
+    .club-body details { margin-top: 0; }
+  }
+  @media (max-width: 620px) {
+    .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bets-grid { grid-template-columns: 1fr; }
+    .wrap { width: calc(100% - 24px); }
+    .mast { align-items: start; flex-direction: column; padding-block: 23px; gap: 12px; }
+    .nav-inner { padding-bottom: 8px; gap: 8px; }
+    #leagues button { padding-inline: 6px; font-size: 12px; }
+    .card { padding: 7px 9px; }
+    .card strong { font-size: 20px; }
+    .card .eyebrow { letter-spacing: .025em; }
+    .summary { gap: 5px; }
+    .club-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap mast">
+    <svg class="pitch" viewBox="0 0 370 260" fill="none" stroke="#bff5cd" stroke-width="2" aria-hidden="true">
+      <rect x="8" y="10" width="354" height="240" rx="8"/>
+      <path d="M185 10v240M8 70h64v120H8m354-120h-64v120h64M8 99h24v62H8m354-62h-24v62h24"/>
+      <circle cx="185" cy="130" r="42"/><circle cx="185" cy="130" r="2"/>
+    </svg>
+    <div><div class="eyebrow">English league football</div><h1>Football Dashboard</h1><p>Tables, recent form and the fixtures ahead</p></div>
+    <button type="button" class="button" id="export">Download table CSV</button>
+  </div>
+</header>
+<nav class="navigation" aria-label="Competition and season">
+  <div class="wrap nav-inner"><div id="leagues"></div><div><label for="season">Season</label> <select id="season"></select></div></div>
+</nav>
+<main class="wrap">
+  <div id="league-view">
+  <div class="summary" id="summary" aria-label="League season at a glance"></div>
+  <section aria-labelledby="scoreline-title">
+    <div class="scoreline-heading"><h2 id="scoreline-title">Most frequent scorelines</h2><p class="note">Top six · home–away · percentage of completed league matches this season</p></div>
+    <div class="summary" id="scorelines"></div>
+  </section>
+  <p class="coverage" id="coverage" hidden></p>
+  <div class="layout">
+    <section class="panel" aria-labelledby="table-title">
+      <div class="section-head">
+        <div><h2 id="table-title">League table</h2><p class="note">Select a club to see its results and fixtures.</p></div>
+        <div><label for="window">Recent matches</label> <select id="window"><option value="5">Last 5</option><option value="10">Last 10</option><option value="20">Last 20</option></select></div>
+      </div>
+      <div class="scroll" tabindex="0" role="region" aria-label="League table, scroll horizontally if needed">
+        <table aria-labelledby="table-title">
+          <thead><tr>
+            <th scope="col" id="rank-header"><button data-sort="rank" title="League position">#</button></th>
+            <th scope="col" class="club">Club</th>
+            <th scope="col" title="Played">P</th><th scope="col" title="Won">W</th>
+            <th scope="col" title="Drawn">D</th><th scope="col" title="Lost">L</th>
+            <th scope="col" title="Goals for">GF</th><th scope="col" title="Goals against">GA</th>
+            <th scope="col" title="Goal difference">GD</th><th scope="col">Pts</th>
+            <th scope="col" title="Table points per game, including recorded points adjustments">PPG</th>
+            <th scope="col" title="Points earned per game in the last eight completed league matches, or all available if fewer">Last 8</th>
+            <th scope="col" id="form-header"><button data-sort="form" title="Sort by points per game in the recent window">Form</button></th>
+            <th scope="col" id="over-header"><button data-sort="over" title="Sort by percentage of recent matches with at least three goals">Over 2.5</button></th>
+            <th scope="col" id="btts-header"><button data-sort="btts" title="Sort by percentage of recent matches where both teams scored">BTTS</button></th>
+          </tr></thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <p class="note legend">Form shows the last five, oldest to newest. Sort Form by points per game in the selected window. Goal columns show hits out of matches played in that window.</p>
+      <p class="note legend" id="points-adjustments" hidden></p>
+    </section>
+    <aside class="panel" id="club-panel" aria-label="Selected club"></aside>
+  </div>
+  <details class="sources">
+    <summary>Data and refresh</summary>
+    <p class="note" id="sources"></p>
+    <p class="note" id="results-checked" hidden></p>
+    <p class="note">Tables use points earned from supplied results plus recorded points adjustments, then goal difference and goals scored. Teams still level appear alphabetically.</p>
+    <p class="note">To update fixture dates and kick-off times, replace the fixture CSVs beside this page using the same filenames, then run <strong>Refresh Football Dashboard.cmd</strong>.</p>
+  </details>
+  </div>
+  <div id="bets-view" hidden>
+    <section class="panel bets-intro">
+      <div class="eyebrow">All four divisions</div><h2>Best bets</h2>
+      <p>Explore the strongest recent trends ahead of each club’s next listed fixture.</p>
+      <div class="bets-controls">
+        <div><label for="bets-window">Venue matches</label> <select id="bets-window"><option value="5">Last 5</option><option value="10">Last 10</option><option value="20">Last 20</option></select></div>
+        <div><label for="bets-minimum">Minimum sample per team</label> <select id="bets-minimum"><option value="3">3 matches</option><option value="5">5 matches</option><option value="1">1 match</option></select></div>
+      </div>
+      <p class="note">Home form uses home results and away form uses away results from the selected season. Form runs oldest to newest. Counts show the actual sample available. These are historical trend rankings. Betting value requires current odds.</p>
+      <p class="note" id="bets-coverage"></p>
+    </section>
+    <section class="panel bets-wide" aria-labelledby="shortlist-title">
+      <div class="section-head"><div><h2 id="shortlist-title">Best bets shortlist</h2><p class="note">Up to five candidates per market, ordered by trend score within each market.</p></div></div>
+      <div id="bets-shortlist"></div>
+      <p class="note legend">Win trend averages the selected team’s venue win rate and its opponent’s venue loss rate. Goal trend averages the two venue hit rates. Trend scores summarize these historical samples.</p>
+    </section>
+    <div class="bets-grid" id="bets-form"></div>
+    <div class="bets-grid" id="bets-goals"></div>
+  </div>
+  <section id="streaks-view" hidden aria-labelledby="streaks-title">
+    <div class="panel bets-intro">
+      <div class="eyebrow">All four divisions</div><h2 id="streaks-title">Streaks</h2>
+      <p>Current unbeaten and winless runs, measured in completed league games in the selected season.</p>
+      <p class="note">Unbeaten means wins or draws since the last defeat. Winless means draws or defeats since the last win. Home and away runs count only games at that venue. Select a column heading to rank the longest runs.</p>
+      <p class="note" id="streaks-coverage"></p>
+    </div>
+    <div class="bets-grid" id="streaks-leaders"></div>
+    <div class="panel bets-wide">
+      <div class="section-head"><h2>All teams</h2><p class="note">All run lengths are in games. Form runs oldest to newest.</p></div>
+      <div class="scroll" tabindex="0" role="region" aria-label="Streaks table">
+        <table><thead><tr><th scope="col">#</th><th scope="col" class="club">Club</th><th scope="col">Division</th><th scope="col">Last five</th>
+          <th scope="col"><button data-streak="unbeaten">Unbeaten run</button></th>
+          <th scope="col"><button data-streak="unbeatenHome">Unbeaten run at home</button></th>
+          <th scope="col"><button data-streak="unbeatenAway">Unbeaten run away from home</button></th>
+          <th scope="col"><button data-streak="winless">Winless run</button></th>
+          <th scope="col"><button data-streak="winlessHome">Winless run at home</button></th>
+          <th scope="col"><button data-streak="winlessAway">Winless run away from home</button></th>
+        </tr></thead><tbody id="streaks-rows"></tbody></table>
+      </div>
+    </div>
+  </section>
+</main>
+<script type="application/json" id="match-data">/* DASHBOARD_DATA */</script>
+<script>
+"use strict";
+const data = JSON.parse(document.getElementById("match-data").textContent);
+const byId = id => document.getElementById(id);
+const escape = value => String(value).replace(/[&<>"']/g, char =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+const today = new Intl.DateTimeFormat("sv-SE", {timeZone: "Europe/London"}).format(new Date());
+const dayFormat = new Intl.DateTimeFormat("en-GB", {day: "numeric", month: "short", timeZone: "UTC"});
+const dayLabel = day => dayFormat.format(new Date(day + "T00:00:00Z"));
+const seasonText = season => season.replace("-", "/");
+const played = match => match[6] === "Played";
+const over = match => match[4] + match[5] >= 3;
+const btts = match => match[4] > 0 && match[5] > 0;
+const percent = (hits, total) => total ? Math.round(100 * hits / total) + "%" : "—";
+const outcome = (gf, ga) => gf > ga ? "W" : gf === ga ? "D" : "L";
+const points = {W: 3, D: 1, L: 0};
+let league = Object.keys(data)[0];
+let season = Object.keys(data[league].seasons)[0];
+let selected = null;
+let sort = "rank";
+let tableRows = [];
+let recentOpen = false;
+let bestBets = false;
+let streaks = false;
+let streakSort = "unbeaten";
+let streakRows = [];
+const streakLabels = {
+  unbeaten: "Unbeaten run", unbeatenHome: "Unbeaten run at home", unbeatenAway: "Unbeaten run away from home",
+  winless: "Winless run", winlessHome: "Winless run at home", winlessAway: "Winless run away from home",
+};
+let betsExport = [];
+
+function tableFor(matches, windowSize, adjustments = {}) {
+  const clubs = new Map();
+  for (const match of matches) {
+    const [, , home, away, hg, ag] = match;
+    for (const [name, opponent, venue, gf, ga] of [[home, away, "H", hg, ag], [away, home, "A", ag, hg]]) {
+      if (!clubs.has(name)) {
+        clubs.set(name, {name, P: 0, W: 0, D: 0, L: 0, GF: 0, GA: 0, pts: 0, results: [], upcoming: []});
+      }
+      const row = clubs.get(name);
+      if (played(match)) {
+        const result = outcome(gf, ga);
+        row.P++;
+        row[result]++;
+        row.GF += gf;
+        row.GA += ga;
+        row.pts += points[result];
+        row.results.push({match, opponent, venue, gf, ga, result});
+      } else if (match[6] === "To be played" && match[0] >= today) {
+        row.upcoming.push({match, opponent, venue});
+      }
+    }
+  }
+  return [...clubs.values()].map(row => {
+      row.adjustment = adjustments[row.name] || 0;
+      row.pts += row.adjustment;
+      return row;
+    })
+    .sort((a, b) => b.pts - a.pts || (b.GF - b.GA) - (a.GF - a.GA) ||
+      b.GF - a.GF || a.name.localeCompare(b.name, "en-GB"))
+    .map((row, index) => {
+      row.rank = index + 1;
+      row.gd = row.GF - row.GA;
+      row.ppg = row.P ? row.pts / row.P : null;
+      const lastEight = row.results.slice(-8);
+      row.lastEightCount = lastEight.length;
+      row.lastEightPpg = lastEight.length ?
+        lastEight.reduce((total, result) => total + points[result.result], 0) / lastEight.length : null;
+      row.recent = row.results.slice(-windowSize);
+      row.n = row.recent.length;
+      row.over = row.recent.filter(result => over(result.match)).length;
+      row.btts = row.recent.filter(result => btts(result.match)).length;
+      row.form = row.recent.reduce((total, result) => total + points[result.result], 0);
+      return row;
+    });
+}
+
+function rate(hits, n) {
+  if (!n) return "—";
+  const percentage = percent(hits, n);
+  return `<span class="rate" title="${percentage}"><span>${hits}/${n}</span><span class="bar" aria-hidden="true"><i style="width:${percentage}"></i></span></span>`;
+}
+
+function badge(result) {
+  const label = {W: "Win", D: "Draw", L: "Loss"}[result];
+  return `<span class="badge ${result}" aria-label="${label}" title="${label}">${result}</span>`;
+}
+
+function renderRows() {
+  for (const button of document.querySelectorAll("[data-sort]")) {
+    const active = button.dataset.sort === sort;
+    if (active) button.parentElement.setAttribute("aria-sort", sort === "rank" ? "ascending" : "descending");
+    else button.parentElement.removeAttribute("aria-sort");
+    const label = {rank: "#", form: "Form", over: "Over 2.5", btts: "BTTS"}[button.dataset.sort];
+    button.textContent = label + (active ? (sort === "rank" ? " ↑" : " ↓") : "");
+  }
+  byId("table-body").innerHTML = tableRows.map(row => {
+    const active = row.name === selected;
+    const chips = row.recent.slice(-5).map(result => badge(result.result)).join("");
+    return `<tr class="${active ? "active" : ""}"><td>${row.rank}</td>
+      <td class="club"><button type="button" data-club="${escape(row.name)}" aria-pressed="${active}">${escape(row.name)}</button></td>
+      <td>${row.P}</td><td>${row.W}</td><td>${row.D}</td><td>${row.L}</td>
+      <td>${row.GF}</td><td>${row.GA}</td><td>${row.gd > 0 ? "+" : ""}${row.gd}</td>
+      <td class="pts" title="${row.adjustment ? escape(row.adjustment + ' points adjustment') : 'Points'}">${row.pts}${row.adjustment ? "*" : ""}</td>
+      <td>${row.ppg === null ? "—" : row.ppg.toFixed(2)}</td>
+      <td class="${row.lastEightPpg === null ? "" : row.lastEightPpg < 2 ? "ppg-low" : row.lastEightPpg > 2 ? "ppg-high" : ""}"
+        title="Points earned per game over ${row.lastEightCount} completed league matches">${row.lastEightPpg === null ? "—" : row.lastEightPpg.toFixed(2)}</td>
+      <td><span class="form">${chips || "—"}</span></td>
+      <td>${rate(row.over, row.n)}</td><td>${rate(row.btts, row.n)}</td></tr>`;
+  }).join("");
+}
+
+function matchList(matches, results) {
+  return `<ul class="matches">${matches.map(item => {
+    const [day, time] = item.match;
+    const meta = results ? `${item.gf}–${item.ga} ${badge(item.result)}` : escape(time);
+    return `<li><div><strong><span class="venue" title="${item.venue === "H" ? "Home" : "Away"}">${item.venue}</span>${escape(item.opponent)}</strong>
+      <span class="note">${dayLabel(day)}</span></div><div class="match-meta">${meta}</div></li>`;
+  }).join("")}</ul>`;
+}
+
+function renderClub() {
+  const row = tableRows.find(item => item.name === selected);
+  if (!row) {
+    byId("club-panel").innerHTML = '<div class="club-head"><h2>No clubs in this export</h2></div>';
+    return;
+  }
+  const fixtures = row.upcoming.slice(0, 5);
+  const rateText = hits => row.n ? `${hits}/${row.n} · ${percent(hits, row.n)}` : "—";
+  const clubs = [...tableRows].sort((a, b) => a.name.localeCompare(b.name, "en-GB"));
+  const options = clubs.map(club => `<option${club.name === selected ? " selected" : ""}>${escape(club.name)}</option>`).join("");
+  byId("club-panel").innerHTML = `
+    <div class="club-head"><div class="eyebrow">Club focus</div><h2>${escape(row.name)}</h2>
+    <p class="note">Position ${row.rank} · ${row.pts} points · ${row.P} played</p>
+    <div class="club-picker"><label for="club-picker">Club</label> <select id="club-picker">${options}</select></div></div>
+    <div class="club-body">
+      <div class="club-stats">
+        <div><span class="note">Over 2.5 goals</span><strong>${rateText(row.over)}</strong></div>
+        <div><span class="note">Both teams scored</span><strong>${rateText(row.btts)}</strong></div>
+      </div>
+      <div><h3>Next 5 league fixtures</h3>${fixtures.length ? matchList(fixtures, false) :
+        '<p class="empty note">No upcoming fixtures in this export.</p>'}</div>
+      <details id="recent-results"${recentOpen ? " open" : ""}><summary>Recent results (${row.n})</summary>
+        ${row.n ? matchList([...row.recent].reverse(), true) : '<p class="note">No completed matches.</p>'}
+      </details>
+    </div>`;
+  byId("recent-results").addEventListener("toggle", event => { recentOpen = event.target.open; });
+  byId("club-picker").addEventListener("change", event => {
+    selectClub(event.target.value);
+    byId("club-picker").focus();
+  });
+}
+
+function render() {
+  byId("league-view").hidden = bestBets || streaks;
+  byId("bets-view").hidden = !bestBets;
+  byId("streaks-view").hidden = !streaks;
+  byId("export").textContent = streaks ? "Download streaks CSV" : bestBets ? "Download best bets CSV" : "Download table CSV";
+  if (streaks) {
+    renderStreaks();
+    return;
+  }
+  if (bestBets) {
+    renderBets();
+    return;
+  }
+  const group = data[league].seasons[season];
+  const matches = group.matches;
+  const finished = matches.filter(played);
+  const newest = finished.at(-1)?.[0];
+  const total = finished.length;
+  const windowSize = Number(byId("window").value);
+  tableRows = tableFor(matches, windowSize, group.points_adjustments);
+  if (!tableRows.some(row => row.name === selected)) selected = tableRows[0]?.name;
+  if (sort !== "rank") {
+    const rateFor = row => row.n ? row[sort] / row.n : -1;
+    tableRows.sort((a, b) => rateFor(b) - rateFor(a) || a.rank - b.rank);
+  }
+  const homeWins = finished.filter(match => match[4] > match[5]).length;
+  const awayWins = finished.filter(match => match[5] > match[4]).length;
+  const draws = total - homeWins - awayWins;
+  const cards = [
+    ["Matches played", total, newest ? "Results through " + dayLabel(newest) + " " + newest.slice(0, 4) : "Awaiting first result"],
+    ["Over 2.5 goals", percent(finished.filter(over).length, total), "League season · 3+ total goals"],
+    ["Both teams scored", percent(finished.filter(btts).length, total), "League season · BTTS"],
+    ["Home wins", homeWins, "League season · " + percent(homeWins, total)],
+    ["Away wins", awayWins, "League season · " + percent(awayWins, total)],
+    ["Draws", draws, "League season · " + percent(draws, total)],
+  ];
+  byId("summary").innerHTML = cards.map(([label, value, hint]) =>
+    `<div class="card"><div class="eyebrow">${label}</div><strong>${value}</strong><p class="note">${hint}</p></div>`).join("");
+  const scores = new Map();
+  for (const match of finished) {
+    const score = match[4] + "–" + match[5];
+    if (!scores.has(score)) scores.set(score, {score, home: match[4], away: match[5], count: 0});
+    scores.get(score).count++;
+  }
+  const frequent = [...scores.values()].sort((a, b) => b.count - a.count || a.home - b.home || a.away - b.away).slice(0, 6);
+  byId("scorelines").innerHTML = frequent.length ? frequent.map(item =>
+    `<div class="card"><div class="eyebrow">Home–away</div><strong>${item.score}</strong>
+    <p class="note">${item.count} ${item.count === 1 ? "match" : "matches"} · ${(100 * item.count / total).toFixed(1)}%</p></div>`).join("") :
+    '<p class="note">Scorelines will appear after the first completed match.</p>';
+  const overdue = matches.filter(match => match[6] === "To be played" && match[0] < today).length;
+  const notices = [];
+  const adjustments = Object.entries(group.points_adjustments || {}).map(([club, adjustment]) =>
+    `* ${club}: ${Math.abs(adjustment)} points ${adjustment < 0 ? "deducted" : "added"} (recorded adjustment).`);
+  byId("points-adjustments").textContent = adjustments.join(" ");
+  byId("points-adjustments").hidden = !adjustments.length;
+  if (overdue) notices.push(`${overdue} past fixture${overdue === 1 ? " has" : "s have"} no confirmed result in the supplied files.`);
+  if (group.conflicts) notices.push(`${group.conflicts} overlapping score${group.conflicts === 1 ? " differs" : "s differ"} across exports. Results files take precedence.`);
+  const expected = tableRows.length * (tableRows.length - 1);
+  const seasonEnd = (Number(season.slice(0, 4)) + 1) + "-07-01";
+  if (newest && seasonEnd <= today && total < expected) {
+    notices.push(`The archive contains ${total} results out of ${expected} possible home-and-away matches for the listed clubs.`);
+  }
+  byId("coverage").textContent = notices.join(" ");
+  byId("coverage").hidden = !notices.length;
+  byId("sources").textContent = "This view uses " + group.sources.join(" and ") + ".";
+  const checked = byId("results-checked");
+  checked.hidden = !group.results_checked;
+  if (group.results_checked) {
+    const label = new Intl.DateTimeFormat("en-GB", {dateStyle: "medium", timeStyle: "short", timeZone: "Europe/London"});
+    checked.textContent = "Football-Data.co.uk results last checked " + label.format(new Date(group.results_checked)) + " UK time.";
+  }
+  renderRows();
+  renderClub();
+}
+
+function renderNavigation() {
+  byId("leagues").innerHTML = Object.entries(data).map(([slug, info]) =>
+    `<button type="button" data-league="${slug}" aria-pressed="${!bestBets && !streaks && league === slug}">${escape(info.name)}</button>`).join("") +
+    `<button type="button" data-league="best-bets" aria-pressed="${bestBets}">Best Bets</button>
+     <button type="button" data-league="streaks" aria-pressed="${streaks}">Streaks</button>`;
+  byId("season").innerHTML = Object.keys(data[league].seasons).map(value =>
+    `<option value="${value}"${value === season ? " selected" : ""}>${seasonText(value)}</option>`).join("");
+}
+
+function currentRun(results, stopResult) {
+  if (!results.length) return null;
+  let count = 0;
+  for (let index = results.length - 1; index >= 0; index--) {
+    if (results[index].result === stopResult) break;
+    count++;
+  }
+  return count;
+}
+
+function renderStreaks() {
+  streakRows = [];
+  const coverage = [];
+  for (const info of Object.values(data)) {
+    const group = info.seasons[season];
+    if (!group) {
+      coverage.push(info.name + " · no data");
+      continue;
+    }
+    const latest = group.matches.filter(played).at(-1)?.[0];
+    coverage.push(info.name + " · " + (latest ? dayLabel(latest) + " " + latest.slice(0, 4) : "no results"));
+    for (const club of tableFor(group.matches, 5)) {
+      const home = club.results.filter(result => result.venue === "H");
+      const away = club.results.filter(result => result.venue === "A");
+      streakRows.push({name: club.name, division: info.name, recent: club.recent,
+        unbeaten: currentRun(club.results, "L"), unbeatenHome: currentRun(home, "L"), unbeatenAway: currentRun(away, "L"),
+        winless: currentRun(club.results, "W"), winlessHome: currentRun(home, "W"), winlessAway: currentRun(away, "W")});
+    }
+  }
+  const compare = key => (a, b) => (b[key] ?? -1) - (a[key] ?? -1) || a.name.localeCompare(b.name, "en-GB");
+  streakRows.sort(compare(streakSort));
+  byId("streaks-coverage").textContent = `${seasonText(season)} · Latest supplied results by division. ${coverage.join(" · ")}. Runs restart each season; — means no completed games in that category.`;
+  byId("streaks-leaders").innerHTML = Object.entries(streakLabels).map(([key, label]) => {
+    const leaders = [...streakRows].filter(row => row[key] > 0).sort(compare(key)).slice(0, 5);
+    return `<section class="panel"><div class="section-head"><h3>${label}</h3><span class="note">Top five · games</span></div>
+      ${betsTable(["#", "Club", "Division", "Games"], leaders.map((row, index) =>
+        `<td>${index + 1}</td><td class="club"><strong>${escape(row.name)}</strong></td><td>${escape(row.division)}</td><td class="pts">${row[key]}</td>`), label)}</section>`;
+  }).join("");
+  byId("streaks-rows").innerHTML = streakRows.map((row, index) => `<tr><td>${index + 1}</td>
+    <td class="club"><strong>${escape(row.name)}</strong></td><td>${escape(row.division)}</td>
+    <td><span class="form">${row.recent.map(result => badge(result.result)).join("") || "—"}</span></td>
+    ${Object.keys(streakLabels).map(key => `<td${key === streakSort ? ' class="pts"' : ""}>${row[key] ?? "—"}</td>`).join("")}</tr>`).join("");
+  for (const button of document.querySelectorAll("[data-streak]")) {
+    const active = button.dataset.streak === streakSort;
+    button.textContent = streakLabels[button.dataset.streak] + (active ? " ↓" : "");
+    if (active) button.parentElement.setAttribute("aria-sort", "descending");
+    else button.parentElement.removeAttribute("aria-sort");
+  }
+}
+
+byId("streaks-view").addEventListener("click", event => {
+  if (event.target.dataset.streak) {
+    streakSort = event.target.dataset.streak;
+    renderStreaks();
+  }
+});
+
+function venueStats(club, venue, windowSize) {
+  const results = club.results.filter(result => result.venue === venue).slice(-windowSize);
+  const n = results.length;
+  const wins = results.filter(result => result.result === "W").length;
+  const losses = results.filter(result => result.result === "L").length;
+  const pts = results.reduce((total, result) => total + points[result.result], 0);
+  const gd = results.reduce((total, result) => total + result.gf - result.ga, 0);
+  return {results, n, wins, losses, pts, gd, ppg: n ? pts / n : null,
+    btts: results.filter(result => btts(result.match)).length,
+    over: results.filter(result => over(result.match)).length};
+}
+
+function betFixtures(windowSize) {
+  const fixtures = [];
+  for (const [slug, info] of Object.entries(data)) {
+    const group = info.seasons[season];
+    if (!group) continue;
+    const clubs = new Map(tableFor(group.matches, windowSize).map(club => [club.name, club]));
+    for (const match of group.matches) {
+      if (match[6] !== "To be played" || match[0] < today) continue;
+      const homeClub = clubs.get(match[2]);
+      const awayClub = clubs.get(match[3]);
+      const homeNext = homeClub.upcoming[0]?.match === match;
+      const awayNext = awayClub.upcoming[0]?.match === match;
+      if (!homeNext && !awayNext) continue;
+      fixtures.push({match, slug, league: info.name, homeNext, awayNext,
+        home: venueStats(homeClub, "H", windowSize), away: venueStats(awayClub, "A", windowSize)});
+    }
+  }
+  return fixtures;
+}
+
+function fixtureCell(item, teamName) {
+  const [day, time, home, away] = item.match;
+  return `<td class="fixture-cell">${teamName ? `<strong>${escape(teamName)}</strong>` : ""}
+    <span>${escape(home)} v ${escape(away)}</span>
+    <small>${escape(item.league)} · ${dayLabel(day)} ${day.slice(0, 4)} · ${escape(time)}</small></td>`;
+}
+
+function betsTable(headers, rows, label) {
+  if (!rows.length) return '<p class="note legend">No fixtures meet the sample requirement in this season.</p>';
+  return `<div class="scroll" tabindex="0" role="region" aria-label="${escape(label)}">
+    <table class="bets-table"><thead><tr>${headers.map(header => `<th scope="col">${header}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(row => `<tr>${row}</tr>`).join("")}</tbody></table></div>`;
+}
+
+function renderBets() {
+  const windowSize = Number(byId("bets-window").value);
+  const minimum = Number(byId("bets-minimum").value);
+  const fixtures = betFixtures(windowSize);
+  const eligible = fixtures.filter(item => item.home.n >= minimum && item.away.n >= minimum);
+  const missingLeagues = Object.values(data).filter(info => !info.seasons[season]).length;
+  const groups = Object.values(data).map(info => info.seasons[season]).filter(Boolean);
+  const latest = groups.flatMap(group => group.matches.filter(played).slice(-1).map(match => match[0])).sort();
+  const overdue = groups.reduce((n, group) => n + group.matches.filter(match => match[6] === "To be played" && match[0] < today).length, 0);
+  byId("bets-coverage").textContent = `${seasonText(season)} · ${fixtures.length} next fixtures · ${eligible.length} with enough venue results for both clubs.` +
+    (latest.length ? ` Latest supplied result ${dayLabel(latest.at(-1))} ${latest.at(-1).slice(0, 4)}.` : "") +
+    " Fixture dates come from your fixture exports." +
+    (overdue ? ` ${overdue} past fixtures have no confirmed result and are excluded.` : "") +
+    (missingLeagues ? ` ${missingLeagues} divisions have no data for this season.` : "");
+
+  const formLists = [
+    ["Best home form", "home", true], ["Best away form", "away", true],
+    ["Worst home form", "home", false], ["Worst away form", "away", false],
+  ];
+  byId("bets-form").innerHTML = formLists.map(([title, side, strongest]) => {
+    const direction = strongest ? -1 : 1;
+    const ranked = fixtures.filter(item => item[side + "Next"] && item[side].n >= minimum)
+      .sort((a, b) => direction * (a[side].ppg - b[side].ppg) ||
+        direction * (a[side].gd / a[side].n - b[side].gd / b[side].n) ||
+        b[side].n - a[side].n || a.match[0].localeCompare(b.match[0]) ||
+        a.match[side === "home" ? 2 : 3].localeCompare(b.match[side === "home" ? 2 : 3])).slice(0, 5);
+    const rows = ranked.map((item, index) => {
+      const stats = item[side];
+      const name = item.match[side === "home" ? 2 : 3];
+      return `<td>${index + 1}</td>${fixtureCell(item, name)}
+        <td><span class="form">${stats.results.map(result => badge(result.result)).join("")}</span></td>
+        <td>${stats.pts}/${3 * stats.n}<br><span class="note">${stats.n} games</span></td><td class="pts">${stats.ppg.toFixed(2)}</td>`;
+    });
+    return `<section class="panel"><div class="section-head"><div><h3>${title}</h3>
+      <p class="note">Next fixture ${side === "home" ? "at home" : "away"} · ranked by venue points per game</p></div></div>
+      ${betsTable(["#", "Team & next fixture", "Venue form", "Points", "PPG"], rows, title)}</section>`;
+  }).join("");
+
+  const markets = [
+    {name: "Home win", key: "home", score: item => (item.home.wins / item.home.n + item.away.losses / item.away.n) / 2},
+    {name: "Away win", key: "away", score: item => (item.away.wins / item.away.n + item.home.losses / item.home.n) / 2},
+    {name: "BTTS", key: "btts", score: item => (item.home.btts / item.home.n + item.away.btts / item.away.n) / 2},
+    {name: "Over 2.5", key: "over", score: item => (item.home.over / item.home.n + item.away.over / item.away.n) / 2},
+  ];
+  betsExport = [];
+  const shortlist = [];
+  const goals = [];
+  for (const market of markets) {
+    const ranked = eligible.filter(item => market.key === "home" ? item.homeNext : market.key === "away" ? item.awayNext : true)
+      .map(item => ({...item, score: market.score(item)}))
+      .sort((a, b) => b.score - a.score || Math.min(b.home.n, b.away.n) - Math.min(a.home.n, a.away.n) ||
+        a.match[0].localeCompare(b.match[0]) || a.match[2].localeCompare(b.match[2]));
+    const homeKey = market.key === "home" ? "wins" : market.key === "away" ? "losses" : market.key;
+    const awayKey = market.key === "home" ? "losses" : market.key === "away" ? "wins" : market.key;
+    const homeLabel = market.key === "home" ? "Home wins" : market.key === "away" ? "Home losses" : "Home hits";
+    const awayLabel = market.key === "home" ? "Away losses" : market.key === "away" ? "Away wins" : "Away hits";
+    const evidence = item => `${homeLabel} ${item.home[homeKey]}/${item.home.n} · ${awayLabel} ${item.away[awayKey]}/${item.away.n}`;
+    for (const item of ranked.slice(0, 5)) {
+      shortlist.push(`<td>${market.name}</td>${fixtureCell(item)}
+        <td class="pts">${percent(item.score, 1)}</td><td>${evidence(item)}</td>`);
+      betsExport.push([market.name, item.league, seasonText(season), ...item.match.slice(0, 4),
+        windowSize, item.home[homeKey], item.home.n, item.away[awayKey], item.away.n, percent(item.score, 1)]);
+    }
+    if (market.key === "btts" || market.key === "over") {
+      const rows = ranked.slice(0, 10).map((item, index) => `<td>${index + 1}</td>${fixtureCell(item)}
+        <td>${rate(item.home[homeKey], item.home.n)}</td><td>${rate(item.away[awayKey], item.away.n)}</td>
+        <td class="pts">${percent(item.score, 1)}</td>`);
+      goals.push(`<section class="panel"><div class="section-head"><div><h3>${market.key === "btts" ? "Both teams to score" : "Over 2.5 goals"}</h3>
+        <p class="note">Top 10 next fixtures by combined venue history</p></div></div>
+        ${betsTable(["#", "Fixture", "Home hits", "Away hits", "Trend"], rows, market.name)}</section>`);
+    }
+  }
+  byId("bets-shortlist").innerHTML = betsTable(["Market", "Fixture", "Trend score", "Recent evidence"], shortlist, "Best bets shortlist");
+  byId("bets-goals").innerHTML = goals.join("");
+}
+
+byId("leagues").addEventListener("click", event => {
+  const next = event.target.dataset.league;
+  if (!next) return;
+  bestBets = next === "best-bets";
+  streaks = next === "streaks";
+  if (!bestBets && !streaks) {
+    league = next;
+    if (!data[league].seasons[season]) season = Object.keys(data[league].seasons)[0];
+  }
+  selected = null;
+  renderNavigation();
+  byId("leagues").querySelector('[aria-pressed="true"]').focus();
+  render();
+});
+byId("season").addEventListener("change", event => {
+  season = event.target.value;
+  render();
+});
+byId("window").addEventListener("change", render);
+byId("bets-window").addEventListener("change", renderBets);
+byId("bets-minimum").addEventListener("change", renderBets);
+document.querySelector("thead").addEventListener("click", event => {
+  if (event.target.dataset.sort) {
+    sort = event.target.dataset.sort;
+    render();
+  }
+});
+function selectClub(name) {
+  selected = name;
+  for (const button of byId("table-body").querySelectorAll("[data-club]")) {
+    const active = button.dataset.club === selected;
+    button.setAttribute("aria-pressed", active);
+    button.closest("tr").classList.toggle("active", active);
+  }
+  renderClub();
+}
+
+byId("table-body").addEventListener("click", event => {
+  if (event.target.dataset.club) selectClub(event.target.dataset.club);
+});
+
+byId("export").addEventListener("click", () => {
+  if (streaks) {
+    downloadCsv(["Club", "Division", "Season", ...Object.values(streakLabels).map(label => label + " (games)")],
+      streakRows.map(row => [row.name, row.division, seasonText(season), ...Object.keys(streakLabels).map(key => row[key] ?? "")]),
+      `streaks-${season}.csv`);
+    return;
+  }
+  if (bestBets) {
+    downloadCsv(["Market", "League", "Season", "Date", "Time", "Home team", "Away team", "Venue window",
+      "Home hits", "Home sample", "Away hits", "Away sample", "Trend score"], betsExport, `best-bets-${season}.csv`);
+    return;
+  }
+  const header = ["League", "Season", "Rank", "Club", "Played", "Won", "Drawn", "Lost", "Goals for",
+    "Goals against", "Goal difference", "Points", "PPG", "Last 8 PPG", "Last 8 matches", "Recent window", "Recent matches",
+    "Recent form (oldest first)", "Recent points", "Over 2.5 matches", "Over 2.5 %", "BTTS matches", "BTTS %"];
+  const records = tableRows.map(row => [data[league].name, seasonText(season), row.rank, row.name,
+    row.P, row.W, row.D, row.L, row.GF, row.GA, row.gd, row.pts,
+    row.ppg === null ? "" : row.ppg.toFixed(2), row.lastEightPpg === null ? "" : row.lastEightPpg.toFixed(2),
+    row.lastEightCount, byId("window").value, row.n,
+    row.recent.map(result => result.result).join(" "), row.form, row.over,
+    row.n ? percent(row.over, row.n) : "", row.btts, row.n ? percent(row.btts, row.n) : ""]);
+  downloadCsv(header, records, `${league}-${season}-table.csv`);
+});
+
+function downloadCsv(header, records, filename) {
+  const field = value => {
+    let string = String(value);
+    if (typeof value === "string" && /^[=+@-]/.test(string)) string = "'" + string;
+    return '"' + string.replaceAll('"', '""') + '"';
+  };
+  const csv = [header, ...records].map(record => record.map(field).join(",")).join("\r\n");
+  const url = URL.createObjectURL(new Blob(["\uFEFF", csv, "\r\n"], {type: "text/csv;charset=utf-8"}));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+renderNavigation();
+render();
+</script>
+</body>
+</html>
