@@ -1,0 +1,53 @@
+name: Refresh and publish football dashboard
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * 2'
+      timezone: Europe/London
+
+permissions:
+  contents: read
+
+concurrency:
+  group: football-dashboard-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out dashboard source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Restore the last downloaded results
+        uses: actions/cache@v4
+        with:
+          path: football_dashboard/football-data-results.json
+          key: football-results-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            football-results-
+      - name: Download results and build the website
+        run: python football_dashboard/build_dashboard.py --refresh-results --output dist/index.html
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload the website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - name: Publish the website
+        id: deployment
+        uses: actions/deploy-pages@v4
