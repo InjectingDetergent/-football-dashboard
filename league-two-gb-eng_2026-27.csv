@@ -1,0 +1,553 @@
+date,time,matchday,home_team,away_team,city,stadium,status,result
+2026-08-15,12:30,1,Oldham,Port Vale,Oldham,Boundary Park,Played,2-0
+2026-08-15,12:30,1,Newport County,Rochdale,Newport,Rodney Parade,Played,3-0
+2026-08-15,15:00,1,Northampton,Swindon Town,Northampton,Sixfields Stadium,Played,0-0
+2026-08-15,15:00,1,Chesterfield,Fleetwood Town,Chesterfield,Proact Stadium,Played,0-1
+2026-08-15,15:00,1,Gillingham,Walsall,Gillingham,Priestfield Stadium,Played,0-3
+2026-08-15,15:00,1,Accrington ST,Colchester,Accrington,The Crown Ground,Played,2-2
+2026-08-15,15:00,1,Crawley Town,Crewe,Crawley,Broadfield Stadium,Played,0-1
+2026-08-15,15:00,1,Grimsby,Exeter City,Grimsby,Blundell Park,Played,1-0
+2026-08-15,15:00,1,Barnet,Salford City,London,The Hive Stadium,Played,3-1
+2026-08-15,15:00,1,Cheltenham,Rotherham,Cheltenham,Whaddon Road,Played,2-1
+2026-08-15,15:00,1,Tranmere,Shrewsbury,Wirral,Prenton Park,Played,2-0
+2026-08-15,15:00,1,York,Bristol Rovers,York,York`s LNER Community Stadium,Played,3-2
+2026-08-22,12:30,2,Bristol Rovers,Newport County,Bristol,Memorial Stadium,Played,5-3
+2026-08-22,12:30,2,Walsall,Grimsby,Walsall,Bescot Stadium,Played,0-0
+2026-08-22,12:30,2,Salford City,Chesterfield,Salford,Moor Lane,Played,0-1
+2026-08-22,15:00,2,Rotherham,York,Rotherham,New York Stadium,Played,1-1
+2026-08-22,15:00,2,Fleetwood Town,Gillingham,Fleetwood,Highbury Stadium,Played,0-0
+2026-08-22,15:00,2,Rochdale,Crawley Town,Rochdale,Spotland,Played,1-2
+2026-08-22,15:00,2,Port Vale,Tranmere,Stoke-On-Trent,Vale Park,Played,1-1
+2026-08-22,15:00,2,Shrewsbury,Barnet,Shrewsbury,New Meadow,Played,1-3
+2026-08-22,15:00,2,Swindon Town,Cheltenham,Swindon,County Ground,Played,2-1
+2026-08-22,15:00,2,Colchester,Oldham,Colchester,Colchester Community Stadium,Played,2-1
+2026-08-22,15:00,2,Crewe,Northampton,Crewe,Alexandra Stadium,Played,1-0
+2026-08-22,15:00,2,Exeter City,Accrington ST,Exeter,St James Park,Played,2-0
+2026-08-29,12:30,3,Port Vale,Crewe,Stoke-On-Trent,Vale Park,Played,0-0
+2026-08-29,12:30,3,Barnet,Cheltenham,London,The Hive Stadium,Played,2-2
+2026-08-29,13:00,3,Rotherham,Chesterfield,Rotherham,New York Stadium,Played,2-1
+2026-08-29,15:00,3,Walsall,Accrington ST,Walsall,Bescot Stadium,Played,3-2
+2026-08-29,15:00,3,Gillingham,Northampton,Gillingham,Priestfield Stadium,Played,1-1
+2026-08-29,15:00,3,Oldham,Swindon Town,Oldham,Boundary Park,Played,3-0
+2026-08-29,15:00,3,Shrewsbury,Salford City,Shrewsbury,New Meadow,Played,1-0
+2026-08-29,15:00,3,Colchester,Rochdale,Colchester,Colchester Community Stadium,Played,1-0
+2026-08-29,15:00,3,Crawley Town,Bristol Rovers,Crawley,Broadfield Stadium,Played,0-2
+2026-08-29,15:00,3,Grimsby,Fleetwood Town,Grimsby,Blundell Park,Played,2-2
+2026-08-29,15:00,3,Newport County,Tranmere,Newport,Rodney Parade,Played,2-2
+2026-08-29,15:00,3,York,Exeter City,York,York`s LNER Community Stadium,Played,2-1
+2026-09-01,19:45,4,Bristol Rovers,Colchester,Bristol,Memorial Stadium,Played,2-0
+2026-09-01,19:45,4,Fleetwood Town,Oldham,Fleetwood,Highbury Stadium,Played,1-1
+2026-09-01,19:45,4,Northampton,Crawley Town,Northampton,Sixfields Stadium,Played,1-1
+2026-09-01,19:45,4,Rochdale,Shrewsbury,Rochdale,Spotland,Played,3-0
+2026-09-01,19:45,4,Chesterfield,Gillingham,Chesterfield,Proact Stadium,Played,1-1
+2026-09-01,19:45,4,Swindon Town,Port Vale,Swindon,County Ground,Played,3-1
+2026-09-01,19:45,4,Accrington ST,Grimsby,Accrington,The Crown Ground,Played,2-2
+2026-09-01,19:45,4,Crewe,Walsall,Crewe,Alexandra Stadium,Played,2-2
+2026-09-01,19:45,4,Exeter City,Barnet,Exeter,St James Park,Played,1-1
+2026-09-01,19:45,4,Cheltenham,York,Cheltenham,Whaddon Road,Played,3-2
+2026-09-01,19:45,4,Tranmere,Rotherham,Wirral,Prenton Park,Played,2-2
+2026-09-01,19:45,4,Salford City,Newport County,Salford,Moor Lane,Played,2-1
+2026-09-05,12:30,5,Fleetwood Town,Shrewsbury,Fleetwood,Highbury Stadium,Played,2-0
+2026-09-05,12:30,5,Salford City,Port Vale,Salford,Moor Lane,Played,1-0
+2026-09-05,15:00,5,Bristol Rovers,Rotherham,Bristol,Memorial Stadium,Played,1-0
+2026-09-05,15:00,5,Northampton,Newport County,Northampton,Sixfields Stadium,Played,1-0
+2026-09-05,15:00,5,Rochdale,Gillingham,Rochdale,Spotland,Played,1-4
+2026-09-05,15:00,5,Chesterfield,Barnet,Chesterfield,Proact Stadium,Played,3-3
+2026-09-05,15:00,5,Swindon Town,Colchester,Swindon,County Ground,Played,3-1
+2026-09-05,15:00,5,Accrington ST,Crawley Town,Accrington,The Crown Ground,Played,3-2
+2026-09-05,15:00,5,Crewe,York,Crewe,Alexandra Stadium,Played,1-1
+2026-09-05,15:00,5,Exeter City,Walsall,Exeter,St James Park,Played,0-0
+2026-09-05,15:00,5,Cheltenham,Grimsby,Cheltenham,Whaddon Road,Played,2-2
+2026-09-05,15:00,5,Tranmere,Oldham,Wirral,Prenton Park,Played,2-0
+2026-09-12,12:30,6,Crawley Town,Cheltenham,Crawley,Broadfield Stadium,Played,1-3
+2026-09-12,12:30,6,Grimsby,Bristol Rovers,Grimsby,Blundell Park,Played,2-0
+2026-09-12,15:00,6,Rotherham,Salford City,Rotherham,New York Stadium,Played,3-3
+2026-09-12,15:00,6,Walsall,Rochdale,Walsall,Bescot Stadium,Played,0-0
+2026-09-12,15:00,6,Gillingham,Tranmere,Gillingham,Priestfield Stadium,Played,2-0
+2026-09-12,15:00,6,Oldham,Chesterfield,Oldham,Boundary Park,Played,1-2
+2026-09-12,15:00,6,Port Vale,Exeter City,Stoke-On-Trent,Vale Park,Played,1-0
+2026-09-12,15:00,6,Shrewsbury,Northampton,Shrewsbury,New Meadow,Played,2-0
+2026-09-12,15:00,6,Colchester,Crewe,Colchester,Colchester Community Stadium,Played,1-1
+2026-09-12,15:00,6,Newport County,Fleetwood Town,Newport,Rodney Parade,Played,1-1
+2026-09-12,15:00,6,Barnet,Accrington ST,London,The Hive Stadium,Played,2-1
+2026-09-12,15:00,6,York,Swindon Town,York,York`s LNER Community Stadium,Played,4-0
+2026-09-19,12:30,7,Rochdale,Oldham,Rochdale,Spotland,Played,2-0
+2026-09-19,12:30,7,Walsall,Port Vale,Walsall,Bescot Stadium,Played,2-0
+2026-09-19,15:00,7,Northampton,Rotherham,Northampton,Sixfields Stadium,Played,0-1
+2026-09-19,15:00,7,Chesterfield,York,Chesterfield,Proact Stadium,Played,2-0
+2026-09-19,15:00,7,Gillingham,Bristol Rovers,Gillingham,Priestfield Stadium,Played,3-0
+2026-09-19,15:00,7,Accrington ST,Newport County,Accrington,The Crown Ground,Played,0-0
+2026-09-19,15:00,7,Colchester,Cheltenham,Colchester,Colchester Community Stadium,Played,1-1
+2026-09-19,15:00,7,Crewe,Shrewsbury,Crewe,Alexandra Stadium,Played,1-1
+2026-09-19,15:00,7,Exeter City,Tranmere,Exeter,St James Park,Played,0-0
+2026-09-19,15:00,7,Grimsby,Crawley Town,Grimsby,Blundell Park,Played,2-0
+2026-09-19,15:00,7,Barnet,Fleetwood Town,London,The Hive Stadium,Played,3-1
+2026-09-19,15:00,7,Salford City,Swindon Town,Salford,Moor Lane,Played,1-0
+2026-09-26,12:30,8,Crawley Town,Barnet,Crawley,Broadfield Stadium,Postponed,
+2026-09-26,15:00,8,Rotherham,Crewe,Rotherham,New York Stadium,Played,1-1
+2026-09-26,15:00,8,Bristol Rovers,Exeter City,Bristol,Memorial Stadium,Played,1-0
+2026-09-26,15:00,8,Fleetwood Town,Rochdale,Fleetwood,Highbury Stadium,Played,1-2
+2026-09-26,15:00,8,Port Vale,Northampton,Stoke-On-Trent,Vale Park,Postponed,
+2026-09-26,15:00,8,Shrewsbury,Colchester,Shrewsbury,New Meadow,Played,2-2
+2026-09-26,15:00,8,Swindon Town,Accrington ST,Swindon,County Ground,Played,1-1
+2026-09-26,15:00,8,Newport County,Grimsby,Newport,Rodney Parade,Played,2-1
+2026-09-26,15:00,8,Cheltenham,Chesterfield,Cheltenham,Whaddon Road,Played,2-1
+2026-09-26,15:00,8,Tranmere,Walsall,Wirral,Prenton Park,Played,1-1
+2026-09-26,15:00,8,York,Gillingham,York,York`s LNER Community Stadium,Played,3-0
+2026-09-26,17:30,8,Oldham,Salford City,Oldham,Boundary Park,Played,1-4
+2026-10-03,12:30,9,Chesterfield,Tranmere,Chesterfield,Proact Stadium,Played,4-2
+2026-10-03,15:00,9,Northampton,Oldham,Northampton,Sixfields Stadium,Postponed,
+2026-10-03,15:00,9,Rochdale,Swindon Town,Rochdale,Spotland,Played,1-0
+2026-10-03,15:00,9,Walsall,Crawley Town,Walsall,Bescot Stadium,Postponed,
+2026-10-03,15:00,9,Gillingham,Newport County,Gillingham,Priestfield Stadium,Played,0-0
+2026-10-03,15:00,9,Accrington ST,Cheltenham,Accrington,The Crown Ground,Played,2-0
+2026-10-03,15:00,9,Colchester,Port Vale,Colchester,Colchester Community Stadium,Postponed,
+2026-10-03,15:00,9,Crewe,Bristol Rovers,Crewe,Alexandra Stadium,Played,3-1
+2026-10-03,15:00,9,Exeter City,Rotherham,Exeter,St James Park,Played,1-0
+2026-10-03,15:00,9,Grimsby,Shrewsbury,Grimsby,Blundell Park,Played,1-2
+2026-10-03,15:00,9,Barnet,York,London,The Hive Stadium,Postponed,
+2026-10-03,15:00,9,Salford City,Fleetwood Town,Salford,Moor Lane,Played,1-0
+2026-10-10,12:30,10,Oldham,Accrington ST,Oldham,Boundary Park,Played,0-0
+2026-10-10,12:30,10,Swindon Town,Crewe,Swindon,County Ground,Played,0-1
+2026-10-10,15:00,10,Rotherham,Gillingham,Rotherham,New York Stadium,Played,1-4
+2026-10-10,15:00,10,Bristol Rovers,Barnet,Bristol,Memorial Stadium,Played,1-3
+2026-10-10,15:00,10,Fleetwood Town,Walsall,Fleetwood,Highbury Stadium,Played,1-1
+2026-10-10,15:00,10,Port Vale,Grimsby,Stoke-On-Trent,Vale Park,Played,1-0
+2026-10-10,15:00,10,Shrewsbury,Exeter City,Shrewsbury,New Meadow,Played,0-1
+2026-10-10,15:00,10,Crawley Town,Chesterfield,Crawley,Broadfield Stadium,Played,2-2
+2026-10-10,15:00,10,Newport County,Colchester,Newport,Rodney Parade,Played,1-0
+2026-10-10,15:00,10,Cheltenham,Salford City,Cheltenham,Whaddon Road,Played,0-2
+2026-10-10,15:00,10,Tranmere,Rochdale,Wirral,Prenton Park,Played,1-1
+2026-10-10,15:00,10,York,Northampton,York,York`s LNER Community Stadium,Played,1-1
+2026-10-17,12:30,11,Fleetwood Town,Rotherham,Fleetwood,Highbury Stadium,To be played,
+2026-10-17,12:30,11,Shrewsbury,Bristol Rovers,Shrewsbury,The Croud Meadow,To be played,
+2026-10-17,15:00,11,Oldham,Cheltenham,Oldham,Boundary Park,To be played,
+2026-10-17,15:00,11,Port Vale,Chesterfield,Stoke on Trent,Vale Park,To be played,
+2026-10-17,15:00,11,Swindon Town,Walsall,Swindon,County Ground,To be played,
+2026-10-17,15:00,11,Accrington ST,Gillingham,Accrington,The Wham Stadium,To be played,
+2026-10-17,15:00,11,Colchester,Exeter City,Colchester,,To be played,
+2026-10-17,15:00,11,Crewe,Rochdale,Crewe,Alexandra Stadium,To be played,
+2026-10-17,15:00,11,Grimsby,Northampton,Cleethorpes,Blundell Park,To be played,
+2026-10-17,15:00,11,Newport County,York,Newport,Rodney Parade,To be played,
+2026-10-17,15:00,11,Tranmere,Barnet,Birkenhead,Prenton Park,To be played,
+2026-10-17,15:00,11,Salford City,Crawley Town,Salford,Peninsula Stadium,To be played,
+2026-10-20,19:45,12,Rotherham,Newport County,Rotherham,Aesseal New York Stadium,To be played,
+2026-10-20,19:45,12,Bristol Rovers,Salford City,Bristol,Memorial Stadium,To be played,
+2026-10-20,19:45,12,Northampton,Tranmere,Northampton,Sixfields Stadium,To be played,
+2026-10-20,19:45,12,Rochdale,Grimsby,Rochdale,Spotland Stadium,To be played,
+2026-10-20,19:45,12,Walsall,Oldham,Walsall,Bescot Stadium,To be played,
+2026-10-20,19:45,12,Chesterfield,Colchester,Chesterfield,SMH Group Stadium,To be played,
+2026-10-20,19:45,12,Crawley Town,Shrewsbury,Crawley,The Broadfield Stadium,To be played,
+2026-10-20,19:45,12,Exeter City,Crewe,Exeter,St James Park,To be played,
+2026-10-20,19:45,12,Barnet,Swindon Town,London,The Hive Stadium,To be played,
+2026-10-20,19:45,12,Cheltenham,Fleetwood Town,Cheltenham,Whaddon Road,To be played,
+2026-10-20,19:45,12,York,Accrington ST,York,York Community Stadium,To be played,
+2026-10-20,20:00,12,Gillingham,Port Vale,Gillingham,Priestfield Stadium,To be played,
+2026-10-24,12:30,13,Bristol Rovers,Swindon Town,Bristol,Memorial Stadium,To be played,
+2026-10-24,12:30,13,Northampton,Colchester,Northampton,Sixfields Stadium,To be played,
+2026-10-24,12:30,13,Cheltenham,Newport County,Cheltenham,Whaddon Road,To be played,
+2026-10-24,15:00,13,Rotherham,Shrewsbury,Rotherham,Aesseal New York Stadium,To be played,
+2026-10-24,15:00,13,Rochdale,Accrington ST,Rochdale,Spotland Stadium,To be played,
+2026-10-24,15:00,13,Chesterfield,Crewe,Chesterfield,SMH Group Stadium,To be played,
+2026-10-24,15:00,13,Gillingham,Grimsby,Gillingham,Priestfield Stadium,To be played,
+2026-10-24,15:00,13,Crawley Town,Tranmere,Crawley,The Broadfield Stadium,To be played,
+2026-10-24,15:00,13,Exeter City,Fleetwood Town,Exeter,St James Park,To be played,
+2026-10-24,15:00,13,Barnet,Oldham,London,The Hive Stadium,To be played,
+2026-10-24,15:00,13,York,Port Vale,York,York Community Stadium,To be played,
+2026-10-26,20:00,13,Walsall,Salford City,Walsall,Bescot Stadium,To be played,
+2026-10-30,19:45,14,Newport County,Chesterfield,Newport,Rodney Parade,To be played,
+2026-10-31,12:30,14,Port Vale,Rochdale,Stoke on Trent,Vale Park,To be played,
+2026-10-31,12:30,14,Grimsby,York,Cleethorpes,Blundell Park,To be played,
+2026-10-31,15:00,14,Fleetwood Town,Bristol Rovers,Fleetwood,Highbury Stadium,To be played,
+2026-10-31,15:00,14,Oldham,Crawley Town,Oldham,Boundary Park,To be played,
+2026-10-31,15:00,14,Shrewsbury,Gillingham,Shrewsbury,The Croud Meadow,To be played,
+2026-10-31,15:00,14,Swindon Town,Rotherham,Swindon,County Ground,To be played,
+2026-10-31,15:00,14,Accrington ST,Northampton,Accrington,The Wham Stadium,To be played,
+2026-10-31,15:00,14,Colchester,Walsall,Colchester,,To be played,
+2026-10-31,15:00,14,Crewe,Barnet,Crewe,Alexandra Stadium,To be played,
+2026-10-31,15:00,14,Tranmere,Cheltenham,Birkenhead,Prenton Park,To be played,
+2026-10-31,15:00,14,Salford City,Exeter City,Salford,Peninsula Stadium,To be played,
+2026-11-14,12:30,15,Exeter City,Cheltenham,Exeter,St James Park,To be played,
+2026-11-14,15:00,15,Rotherham,Crawley Town,Rotherham,Aesseal New York Stadium,To be played,
+2026-11-14,15:00,15,Bristol Rovers,Chesterfield,Bristol,Memorial Stadium,To be played,
+2026-11-14,15:00,15,Rochdale,York,Rochdale,Spotland Stadium,To be played,
+2026-11-14,15:00,15,Walsall,Barnet,Walsall,Bescot Stadium,To be played,
+2026-11-14,15:00,15,Port Vale,Accrington ST,Stoke on Trent,Vale Park,To be played,
+2026-11-14,15:00,15,Shrewsbury,Oldham,Shrewsbury,The Croud Meadow,To be played,
+2026-11-14,15:00,15,Swindon Town,Grimsby,Swindon,County Ground,To be played,
+2026-11-14,15:00,15,Colchester,Gillingham,Colchester,,To be played,
+2026-11-14,15:00,15,Crewe,Newport County,Crewe,Alexandra Stadium,To be played,
+2026-11-14,15:00,15,Salford City,Northampton,Salford,Peninsula Stadium,To be played,
+2026-11-14,17:30,15,Fleetwood Town,Tranmere,Fleetwood,Highbury Stadium,To be played,
+2026-11-21,12:30,16,Gillingham,Crewe,Gillingham,Priestfield Stadium,To be played,
+2026-11-21,12:30,16,Newport County,Swindon Town,Newport,Rodney Parade,To be played,
+2026-11-21,15:00,16,Northampton,Rochdale,Northampton,Sixfields Stadium,To be played,
+2026-11-21,15:00,16,Chesterfield,Shrewsbury,Chesterfield,SMH Group Stadium,To be played,
+2026-11-21,15:00,16,Oldham,Exeter City,Oldham,Boundary Park,To be played,
+2026-11-21,15:00,16,Accrington ST,Salford City,Accrington,The Wham Stadium,To be played,
+2026-11-21,15:00,16,Crawley Town,Fleetwood Town,Crawley,The Broadfield Stadium,To be played,
+2026-11-21,15:00,16,Grimsby,Rotherham,Cleethorpes,Blundell Park,To be played,
+2026-11-21,15:00,16,Barnet,Port Vale,London,The Hive Stadium,To be played,
+2026-11-21,15:00,16,Cheltenham,Bristol Rovers,Cheltenham,Whaddon Road,To be played,
+2026-11-21,15:00,16,Tranmere,Colchester,Birkenhead,Prenton Park,To be played,
+2026-11-21,15:00,16,York,Walsall,York,York Community Stadium,To be played,
+2026-11-28,12:30,17,Bristol Rovers,Tranmere,Bristol,Memorial Stadium,To be played,
+2026-11-28,12:30,17,Exeter City,Crawley Town,Exeter,St James Park,To be played,
+2026-11-28,15:00,17,Rotherham,Oldham,Rotherham,Aesseal New York Stadium,To be played,
+2026-11-28,15:00,17,Fleetwood Town,Accrington ST,Fleetwood,Highbury Stadium,To be played,
+2026-11-28,15:00,17,Rochdale,Barnet,Rochdale,Spotland Stadium,To be played,
+2026-11-28,15:00,17,Walsall,Northampton,Walsall,Bescot Stadium,To be played,
+2026-11-28,15:00,17,Port Vale,Newport County,Stoke on Trent,Vale Park,To be played,
+2026-11-28,15:00,17,Shrewsbury,Cheltenham,Shrewsbury,The Croud Meadow,To be played,
+2026-11-28,15:00,17,Swindon Town,Chesterfield,Swindon,County Ground,To be played,
+2026-11-28,15:00,17,Colchester,York,Colchester,,To be played,
+2026-11-28,15:00,17,Crewe,Grimsby,Crewe,Alexandra Stadium,To be played,
+2026-11-28,15:00,17,Salford City,Gillingham,Salford,Peninsula Stadium,To be played,
+2026-12-01,19:45,18,Northampton,Fleetwood Town,Northampton,Sixfields Stadium,To be played,
+2026-12-01,19:45,18,Chesterfield,Exeter City,Chesterfield,SMH Group Stadium,To be played,
+2026-12-01,19:45,18,Gillingham,Swindon Town,Gillingham,Priestfield Stadium,To be played,
+2026-12-01,19:45,18,Oldham,Bristol Rovers,Oldham,Boundary Park,To be played,
+2026-12-01,19:45,18,Accrington ST,Crewe,Accrington,The Wham Stadium,To be played,
+2026-12-01,19:45,18,Crawley Town,Port Vale,Crawley,The Broadfield Stadium,To be played,
+2026-12-01,19:45,18,Grimsby,Colchester,Cleethorpes,Blundell Park,To be played,
+2026-12-01,19:45,18,Newport County,Walsall,Newport,Rodney Parade,To be played,
+2026-12-01,19:45,18,Barnet,Rotherham,London,The Hive Stadium,To be played,
+2026-12-01,19:45,18,Cheltenham,Rochdale,Cheltenham,Whaddon Road,To be played,
+2026-12-01,19:45,18,Tranmere,Salford City,Birkenhead,Prenton Park,To be played,
+2026-12-01,19:45,18,York,Shrewsbury,York,York Community Stadium,To be played,
+2026-12-12,12:30,19,Chesterfield,Grimsby,Chesterfield,SMH Group Stadium,To be played,
+2026-12-12,12:30,19,Tranmere,York,Birkenhead,Prenton Park,To be played,
+2026-12-12,15:00,19,Rotherham,Walsall,Rotherham,Aesseal New York Stadium,To be played,
+2026-12-12,15:00,19,Bristol Rovers,Accrington ST,Bristol,Memorial Stadium,To be played,
+2026-12-12,15:00,19,Fleetwood Town,Swindon Town,Fleetwood,Highbury Stadium,To be played,
+2026-12-12,15:00,19,Oldham,Gillingham,Oldham,Boundary Park,To be played,
+2026-12-12,15:00,19,Shrewsbury,Port Vale,Shrewsbury,The Croud Meadow,To be played,
+2026-12-12,15:00,19,Crawley Town,Newport County,Crawley,The Broadfield Stadium,To be played,
+2026-12-12,15:00,19,Exeter City,Rochdale,Exeter,St James Park,To be played,
+2026-12-12,15:00,19,Barnet,Northampton,London,The Hive Stadium,To be played,
+2026-12-12,15:00,19,Cheltenham,Crewe,Cheltenham,Whaddon Road,To be played,
+2026-12-12,15:00,19,Salford City,Colchester,Salford,Peninsula Stadium,To be played,
+2026-12-17,20:00,20,Crewe,Salford City,Crewe,Alexandra Stadium,To be played,
+2026-12-19,12:30,20,Northampton,Exeter City,Northampton,Sixfields Stadium,To be played,
+2026-12-19,12:30,20,Colchester,Fleetwood Town,Colchester,,To be played,
+2026-12-19,15:00,20,Rochdale,Bristol Rovers,Rochdale,Spotland Stadium,To be played,
+2026-12-19,15:00,20,Walsall,Shrewsbury,Walsall,Bescot Stadium,To be played,
+2026-12-19,15:00,20,Gillingham,Cheltenham,Gillingham,Priestfield Stadium,To be played,
+2026-12-19,15:00,20,Port Vale,Rotherham,Stoke on Trent,Vale Park,To be played,
+2026-12-19,15:00,20,Swindon Town,Tranmere,Swindon,County Ground,To be played,
+2026-12-19,15:00,20,Accrington ST,Chesterfield,Accrington,The Wham Stadium,To be played,
+2026-12-19,15:00,20,Grimsby,Barnet,Cleethorpes,Blundell Park,To be played,
+2026-12-19,15:00,20,Newport County,Oldham,Newport,Rodney Parade,To be played,
+2026-12-19,15:00,20,York,Crawley Town,York,York Community Stadium,To be played,
+2026-12-26,15:00,21,Rotherham,Rochdale,Rotherham,Aesseal New York Stadium,To be played,
+2026-12-26,15:00,21,Bristol Rovers,Walsall,Bristol,Memorial Stadium,To be played,
+2026-12-26,15:00,21,Fleetwood Town,Crewe,Fleetwood,Highbury Stadium,To be played,
+2026-12-26,15:00,21,Chesterfield,Northampton,Chesterfield,SMH Group Stadium,To be played,
+2026-12-26,15:00,21,Oldham,York,Oldham,Boundary Park,To be played,
+2026-12-26,15:00,21,Shrewsbury,Swindon Town,Shrewsbury,The Croud Meadow,To be played,
+2026-12-26,15:00,21,Crawley Town,Gillingham,Crawley,The Broadfield Stadium,To be played,
+2026-12-26,15:00,21,Exeter City,Newport County,Exeter,St James Park,To be played,
+2026-12-26,15:00,21,Barnet,Colchester,London,The Hive Stadium,To be played,
+2026-12-26,15:00,21,Cheltenham,Port Vale,Cheltenham,Whaddon Road,To be played,
+2026-12-26,15:00,21,Tranmere,Accrington ST,Birkenhead,Prenton Park,To be played,
+2026-12-26,15:00,21,Salford City,Grimsby,Salford,Peninsula Stadium,To be played,
+2026-12-29,19:45,22,Northampton,Cheltenham,Northampton,Sixfields Stadium,To be played,
+2026-12-29,19:45,22,Rochdale,Salford City,Rochdale,Spotland Stadium,To be played,
+2026-12-29,19:45,22,Walsall,Chesterfield,Walsall,Bescot Stadium,To be played,
+2026-12-29,19:45,22,Gillingham,Barnet,Gillingham,Priestfield Stadium,To be played,
+2026-12-29,19:45,22,Port Vale,Bristol Rovers,Stoke on Trent,Vale Park,To be played,
+2026-12-29,19:45,22,Swindon Town,Exeter City,Swindon,County Ground,To be played,
+2026-12-29,19:45,22,Accrington ST,Rotherham,Accrington,The Wham Stadium,To be played,
+2026-12-29,19:45,22,Colchester,Crawley Town,Colchester,,To be played,
+2026-12-29,19:45,22,Crewe,Tranmere,Crewe,Alexandra Stadium,To be played,
+2026-12-29,19:45,22,Grimsby,Oldham,Cleethorpes,Blundell Park,To be played,
+2026-12-29,19:45,22,Newport County,Shrewsbury,Newport,Rodney Parade,To be played,
+2026-12-29,19:45,22,York,Fleetwood Town,York,York Community Stadium,To be played,
+2027-01-01,15:00,23,Rochdale,Chesterfield,Rochdale,Spotland Stadium,To be played,
+2027-01-01,15:00,23,Walsall,Cheltenham,Walsall,Bescot Stadium,To be played,
+2027-01-01,15:00,23,Port Vale,Fleetwood Town,Stoke on Trent,Vale Park,To be played,
+2027-01-01,15:00,23,Swindon Town,Crawley Town,Swindon,County Ground,To be played,
+2027-01-01,15:00,23,Accrington ST,Shrewsbury,Accrington,The Wham Stadium,To be played,
+2027-01-01,15:00,23,Colchester,Rotherham,Colchester,,To be played,
+2027-01-01,15:00,23,Crewe,Oldham,Crewe,Alexandra Stadium,To be played,
+2027-01-01,15:00,23,Grimsby,Tranmere,Cleethorpes,Blundell Park,To be played,
+2027-01-01,15:00,23,Newport County,Barnet,Newport,Rodney Parade,To be played,
+2027-01-01,15:00,23,York,Salford City,York,York Community Stadium,To be played,
+2027-01-02,15:00,23,Northampton,Bristol Rovers,Northampton,Sixfields Stadium,To be played,
+2027-01-02,15:00,23,Gillingham,Exeter City,Gillingham,Priestfield Stadium,To be played,
+2027-01-09,12:30,24,Chesterfield,Accrington ST,Chesterfield,SMH Group Stadium,To be played,
+2027-01-09,12:30,24,Shrewsbury,Walsall,Shrewsbury,The Croud Meadow,To be played,
+2027-01-09,12:30,24,Barnet,Grimsby,London,The Hive Stadium,To be played,
+2027-01-09,15:00,24,Rotherham,Port Vale,Rotherham,Aesseal New York Stadium,To be played,
+2027-01-09,15:00,24,Bristol Rovers,Rochdale,Bristol,Memorial Stadium,To be played,
+2027-01-09,15:00,24,Fleetwood Town,Colchester,Fleetwood,Highbury Stadium,To be played,
+2027-01-09,15:00,24,Oldham,Newport County,Oldham,Boundary Park,To be played,
+2027-01-09,15:00,24,Crawley Town,York,Crawley,The Broadfield Stadium,To be played,
+2027-01-09,15:00,24,Exeter City,Northampton,Exeter,St James Park,To be played,
+2027-01-09,15:00,24,Cheltenham,Gillingham,Cheltenham,Whaddon Road,To be played,
+2027-01-09,15:00,24,Tranmere,Swindon Town,Birkenhead,Prenton Park,To be played,
+2027-01-09,15:00,24,Salford City,Crewe,Salford,Peninsula Stadium,To be played,
+2027-01-16,15:00,25,Rotherham,Fleetwood Town,Rotherham,Aesseal New York Stadium,To be played,
+2027-01-16,15:00,25,Bristol Rovers,Shrewsbury,Bristol,Memorial Stadium,To be played,
+2027-01-16,15:00,25,Northampton,Grimsby,Northampton,Sixfields Stadium,To be played,
+2027-01-16,15:00,25,Rochdale,Crewe,Rochdale,Spotland Stadium,To be played,
+2027-01-16,15:00,25,Walsall,Swindon Town,Walsall,Bescot Stadium,To be played,
+2027-01-16,15:00,25,Chesterfield,Port Vale,Chesterfield,SMH Group Stadium,To be played,
+2027-01-16,15:00,25,Gillingham,Accrington ST,Gillingham,Priestfield Stadium,To be played,
+2027-01-16,15:00,25,Crawley Town,Salford City,Crawley,The Broadfield Stadium,To be played,
+2027-01-16,15:00,25,Exeter City,Colchester,Exeter,St James Park,To be played,
+2027-01-16,15:00,25,Barnet,Tranmere,London,The Hive Stadium,To be played,
+2027-01-16,15:00,25,Cheltenham,Oldham,Cheltenham,Whaddon Road,To be played,
+2027-01-16,15:00,25,York,Newport County,York,York Community Stadium,To be played,
+2027-01-19,19:45,26,Fleetwood Town,Cheltenham,Fleetwood,Highbury Stadium,To be played,
+2027-01-19,19:45,26,Oldham,Walsall,Oldham,Boundary Park,To be played,
+2027-01-19,19:45,26,Port Vale,Gillingham,Stoke on Trent,Vale Park,To be played,
+2027-01-19,19:45,26,Shrewsbury,Crawley Town,Shrewsbury,The Croud Meadow,To be played,
+2027-01-19,19:45,26,Swindon Town,Barnet,Swindon,County Ground,To be played,
+2027-01-19,19:45,26,Accrington ST,York,Accrington,The Wham Stadium,To be played,
+2027-01-19,19:45,26,Colchester,Chesterfield,Colchester,,To be played,
+2027-01-19,19:45,26,Crewe,Exeter City,Crewe,Alexandra Stadium,To be played,
+2027-01-19,19:45,26,Grimsby,Rochdale,Cleethorpes,Blundell Park,To be played,
+2027-01-19,19:45,26,Newport County,Rotherham,Newport,Rodney Parade,To be played,
+2027-01-19,19:45,26,Tranmere,Northampton,Birkenhead,Prenton Park,To be played,
+2027-01-19,19:45,26,Salford City,Bristol Rovers,Salford,Peninsula Stadium,To be played,
+2027-01-23,15:00,27,Fleetwood Town,Exeter City,Fleetwood,Highbury Stadium,To be played,
+2027-01-23,15:00,27,Oldham,Barnet,Oldham,Boundary Park,To be played,
+2027-01-23,15:00,27,Port Vale,York,Stoke on Trent,Vale Park,To be played,
+2027-01-23,15:00,27,Shrewsbury,Rotherham,Shrewsbury,The Croud Meadow,To be played,
+2027-01-23,15:00,27,Swindon Town,Bristol Rovers,Swindon,County Ground,To be played,
+2027-01-23,15:00,27,Accrington ST,Rochdale,Accrington,The Wham Stadium,To be played,
+2027-01-23,15:00,27,Colchester,Northampton,Colchester,,To be played,
+2027-01-23,15:00,27,Crewe,Chesterfield,Crewe,Alexandra Stadium,To be played,
+2027-01-23,15:00,27,Grimsby,Gillingham,Cleethorpes,Blundell Park,To be played,
+2027-01-23,15:00,27,Newport County,Cheltenham,Newport,Rodney Parade,To be played,
+2027-01-23,15:00,27,Tranmere,Crawley Town,Birkenhead,Prenton Park,To be played,
+2027-01-23,15:00,27,Salford City,Walsall,Salford,Peninsula Stadium,To be played,
+2027-01-30,15:00,28,Rotherham,Swindon Town,Rotherham,Aesseal New York Stadium,To be played,
+2027-01-30,15:00,28,Bristol Rovers,Fleetwood Town,Bristol,Memorial Stadium,To be played,
+2027-01-30,15:00,28,Northampton,Accrington ST,Northampton,Sixfields Stadium,To be played,
+2027-01-30,15:00,28,Rochdale,Port Vale,Rochdale,Spotland Stadium,To be played,
+2027-01-30,15:00,28,Walsall,Colchester,Walsall,Bescot Stadium,To be played,
+2027-01-30,15:00,28,Chesterfield,Newport County,Chesterfield,SMH Group Stadium,To be played,
+2027-01-30,15:00,28,Gillingham,Shrewsbury,Gillingham,Priestfield Stadium,To be played,
+2027-01-30,15:00,28,Crawley Town,Oldham,Crawley,The Broadfield Stadium,To be played,
+2027-01-30,15:00,28,Exeter City,Salford City,Exeter,St James Park,To be played,
+2027-01-30,15:00,28,Barnet,Crewe,London,The Hive Stadium,To be played,
+2027-01-30,15:00,28,Cheltenham,Tranmere,Cheltenham,Whaddon Road,To be played,
+2027-01-30,15:00,28,York,Grimsby,York,York Community Stadium,To be played,
+2027-02-06,15:00,29,Bristol Rovers,Crawley Town,Bristol,Memorial Stadium,To be played,
+2027-02-06,15:00,29,Fleetwood Town,Grimsby,Fleetwood,Highbury Stadium,To be played,
+2027-02-06,15:00,29,Northampton,Gillingham,Northampton,Sixfields Stadium,To be played,
+2027-02-06,15:00,29,Rochdale,Colchester,Rochdale,Spotland Stadium,To be played,
+2027-02-06,15:00,29,Chesterfield,Rotherham,Chesterfield,SMH Group Stadium,To be played,
+2027-02-06,15:00,29,Swindon Town,Oldham,Swindon,County Ground,To be played,
+2027-02-06,15:00,29,Accrington ST,Walsall,Accrington,The Wham Stadium,To be played,
+2027-02-06,15:00,29,Crewe,Port Vale,Crewe,Alexandra Stadium,To be played,
+2027-02-06,15:00,29,Exeter City,York,Exeter,St James Park,To be played,
+2027-02-06,15:00,29,Cheltenham,Barnet,Cheltenham,Whaddon Road,To be played,
+2027-02-06,15:00,29,Tranmere,Newport County,Birkenhead,Prenton Park,To be played,
+2027-02-06,15:00,29,Salford City,Shrewsbury,Salford,Peninsula Stadium,To be played,
+2027-02-09,19:45,30,Rotherham,Tranmere,Rotherham,Aesseal New York Stadium,To be played,
+2027-02-09,19:45,30,Walsall,Crewe,Walsall,Bescot Stadium,To be played,
+2027-02-09,19:45,30,Gillingham,Chesterfield,Gillingham,Priestfield Stadium,To be played,
+2027-02-09,19:45,30,Oldham,Fleetwood Town,Oldham,Boundary Park,To be played,
+2027-02-09,19:45,30,Port Vale,Swindon Town,Stoke on Trent,Vale Park,To be played,
+2027-02-09,19:45,30,Shrewsbury,Rochdale,Shrewsbury,The Croud Meadow,To be played,
+2027-02-09,19:45,30,Colchester,Bristol Rovers,Colchester,,To be played,
+2027-02-09,19:45,30,Crawley Town,Northampton,Crawley,The Broadfield Stadium,To be played,
+2027-02-09,19:45,30,Grimsby,Accrington ST,Cleethorpes,Blundell Park,To be played,
+2027-02-09,19:45,30,Newport County,Salford City,Newport,Rodney Parade,To be played,
+2027-02-09,19:45,30,Barnet,Exeter City,London,The Hive Stadium,To be played,
+2027-02-09,19:45,30,York,Cheltenham,York,York Community Stadium,To be played,
+2027-02-13,15:00,31,Rotherham,Bristol Rovers,Rotherham,Aesseal New York Stadium,To be played,
+2027-02-13,15:00,31,Walsall,Exeter City,Walsall,Bescot Stadium,To be played,
+2027-02-13,15:00,31,Gillingham,Rochdale,Gillingham,Priestfield Stadium,To be played,
+2027-02-13,15:00,31,Oldham,Tranmere,Oldham,Boundary Park,To be played,
+2027-02-13,15:00,31,Port Vale,Salford City,Stoke on Trent,Vale Park,To be played,
+2027-02-13,15:00,31,Shrewsbury,Fleetwood Town,Shrewsbury,The Croud Meadow,To be played,
+2027-02-13,15:00,31,Colchester,Swindon Town,Colchester,,To be played,
+2027-02-13,15:00,31,Crawley Town,Accrington ST,Crawley,The Broadfield Stadium,To be played,
+2027-02-13,15:00,31,Grimsby,Cheltenham,Cleethorpes,Blundell Park,To be played,
+2027-02-13,15:00,31,Newport County,Northampton,Newport,Rodney Parade,To be played,
+2027-02-13,15:00,31,Barnet,Chesterfield,London,The Hive Stadium,To be played,
+2027-02-13,15:00,31,York,Crewe,York,York Community Stadium,To be played,
+2027-02-20,15:00,32,Bristol Rovers,Grimsby,Bristol,Memorial Stadium,To be played,
+2027-02-20,15:00,32,Fleetwood Town,Newport County,Fleetwood,Highbury Stadium,To be played,
+2027-02-20,15:00,32,Northampton,Shrewsbury,Northampton,Sixfields Stadium,To be played,
+2027-02-20,15:00,32,Rochdale,Walsall,Rochdale,Spotland Stadium,To be played,
+2027-02-20,15:00,32,Chesterfield,Oldham,Chesterfield,SMH Group Stadium,To be played,
+2027-02-20,15:00,32,Swindon Town,York,Swindon,County Ground,To be played,
+2027-02-20,15:00,32,Accrington ST,Barnet,Accrington,The Wham Stadium,To be played,
+2027-02-20,15:00,32,Crewe,Colchester,Crewe,Alexandra Stadium,To be played,
+2027-02-20,15:00,32,Exeter City,Port Vale,Exeter,St James Park,To be played,
+2027-02-20,15:00,32,Cheltenham,Crawley Town,Cheltenham,Whaddon Road,To be played,
+2027-02-20,15:00,32,Tranmere,Gillingham,Birkenhead,Prenton Park,To be played,
+2027-02-20,15:00,32,Salford City,Rotherham,Salford,Peninsula Stadium,To be played,
+2027-02-27,15:00,33,Northampton,Salford City,Northampton,Sixfields Stadium,To be played,
+2027-02-27,15:00,33,Chesterfield,Bristol Rovers,Chesterfield,SMH Group Stadium,To be played,
+2027-02-27,15:00,33,Gillingham,Colchester,Gillingham,Priestfield Stadium,To be played,
+2027-02-27,15:00,33,Oldham,Shrewsbury,Oldham,Boundary Park,To be played,
+2027-02-27,15:00,33,Accrington ST,Port Vale,Accrington,The Wham Stadium,To be played,
+2027-02-27,15:00,33,Crawley Town,Rotherham,Crawley,The Broadfield Stadium,To be played,
+2027-02-27,15:00,33,Grimsby,Swindon Town,Cleethorpes,Blundell Park,To be played,
+2027-02-27,15:00,33,Newport County,Crewe,Newport,Rodney Parade,To be played,
+2027-02-27,15:00,33,Barnet,Walsall,London,The Hive Stadium,To be played,
+2027-02-27,15:00,33,Cheltenham,Exeter City,Cheltenham,Whaddon Road,To be played,
+2027-02-27,15:00,33,Tranmere,Fleetwood Town,Birkenhead,Prenton Park,To be played,
+2027-02-27,15:00,33,York,Rochdale,York,York Community Stadium,To be played,
+2027-03-06,15:00,34,Rotherham,Cheltenham,Rotherham,Aesseal New York Stadium,To be played,
+2027-03-06,15:00,34,Bristol Rovers,York,Bristol,Memorial Stadium,To be played,
+2027-03-06,15:00,34,Fleetwood Town,Chesterfield,Fleetwood,Highbury Stadium,To be played,
+2027-03-06,15:00,34,Rochdale,Newport County,Rochdale,Spotland Stadium,To be played,
+2027-03-06,15:00,34,Walsall,Gillingham,Walsall,Bescot Stadium,To be played,
+2027-03-06,15:00,34,Port Vale,Oldham,Stoke on Trent,Vale Park,To be played,
+2027-03-06,15:00,34,Shrewsbury,Tranmere,Shrewsbury,The Croud Meadow,To be played,
+2027-03-06,15:00,34,Swindon Town,Northampton,Swindon,County Ground,To be played,
+2027-03-06,15:00,34,Colchester,Accrington ST,Colchester,,To be played,
+2027-03-06,15:00,34,Crewe,Crawley Town,Crewe,Alexandra Stadium,To be played,
+2027-03-06,15:00,34,Exeter City,Grimsby,Exeter,St James Park,To be played,
+2027-03-06,15:00,34,Salford City,Barnet,Salford,Peninsula Stadium,To be played,
+2027-03-13,15:00,35,Northampton,Crewe,Northampton,Sixfields Stadium,To be played,
+2027-03-13,15:00,35,Chesterfield,Salford City,Chesterfield,SMH Group Stadium,To be played,
+2027-03-13,15:00,35,Gillingham,Fleetwood Town,Gillingham,Priestfield Stadium,To be played,
+2027-03-13,15:00,35,Oldham,Colchester,Oldham,Boundary Park,To be played,
+2027-03-13,15:00,35,Accrington ST,Exeter City,Accrington,The Wham Stadium,To be played,
+2027-03-13,15:00,35,Crawley Town,Rochdale,Crawley,The Broadfield Stadium,To be played,
+2027-03-13,15:00,35,Grimsby,Walsall,Cleethorpes,Blundell Park,To be played,
+2027-03-13,15:00,35,Newport County,Bristol Rovers,Newport,Rodney Parade,To be played,
+2027-03-13,15:00,35,Barnet,Shrewsbury,London,The Hive Stadium,To be played,
+2027-03-13,15:00,35,Cheltenham,Swindon Town,Cheltenham,Whaddon Road,To be played,
+2027-03-13,15:00,35,Tranmere,Port Vale,Birkenhead,Prenton Park,To be played,
+2027-03-13,15:00,35,York,Rotherham,York,York Community Stadium,To be played,
+2027-03-20,15:00,36,Rotherham,Grimsby,Rotherham,Aesseal New York Stadium,To be played,
+2027-03-20,15:00,36,Bristol Rovers,Cheltenham,Bristol,Memorial Stadium,To be played,
+2027-03-20,15:00,36,Fleetwood Town,Crawley Town,Fleetwood,Highbury Stadium,To be played,
+2027-03-20,15:00,36,Rochdale,Northampton,Rochdale,Spotland Stadium,To be played,
+2027-03-20,15:00,36,Walsall,York,Walsall,Bescot Stadium,To be played,
+2027-03-20,15:00,36,Port Vale,Barnet,Stoke on Trent,Vale Park,To be played,
+2027-03-20,15:00,36,Shrewsbury,Chesterfield,Shrewsbury,The Croud Meadow,To be played,
+2027-03-20,15:00,36,Swindon Town,Newport County,Swindon,County Ground,To be played,
+2027-03-20,15:00,36,Colchester,Tranmere,Colchester,,To be played,
+2027-03-20,15:00,36,Crewe,Gillingham,Crewe,Alexandra Stadium,To be played,
+2027-03-20,15:00,36,Exeter City,Oldham,Exeter,St James Park,To be played,
+2027-03-20,15:00,36,Salford City,Accrington ST,Salford,Peninsula Stadium,To be played,
+2027-03-26,15:00,37,Rotherham,Colchester,Rotherham,Aesseal New York Stadium,To be played,
+2027-03-26,15:00,37,Bristol Rovers,Northampton,Bristol,Memorial Stadium,To be played,
+2027-03-26,15:00,37,Fleetwood Town,Port Vale,Fleetwood,Highbury Stadium,To be played,
+2027-03-26,15:00,37,Chesterfield,Rochdale,Chesterfield,SMH Group Stadium,To be played,
+2027-03-26,15:00,37,Oldham,Crewe,Oldham,Boundary Park,To be played,
+2027-03-26,15:00,37,Shrewsbury,Accrington ST,Shrewsbury,The Croud Meadow,To be played,
+2027-03-26,15:00,37,Crawley Town,Swindon Town,Crawley,The Broadfield Stadium,To be played,
+2027-03-26,15:00,37,Exeter City,Gillingham,Exeter,St James Park,To be played,
+2027-03-26,15:00,37,Barnet,Newport County,London,The Hive Stadium,To be played,
+2027-03-26,15:00,37,Cheltenham,Walsall,Cheltenham,Whaddon Road,To be played,
+2027-03-26,15:00,37,Tranmere,Grimsby,Birkenhead,Prenton Park,To be played,
+2027-03-26,15:00,37,Salford City,York,Salford,Peninsula Stadium,To be played,
+2027-03-29,15:00,38,Northampton,Chesterfield,Northampton,Sixfields Stadium,To be played,
+2027-03-29,15:00,38,Rochdale,Rotherham,Rochdale,Spotland Stadium,To be played,
+2027-03-29,15:00,38,Walsall,Bristol Rovers,Walsall,Bescot Stadium,To be played,
+2027-03-29,15:00,38,Gillingham,Crawley Town,Gillingham,Priestfield Stadium,To be played,
+2027-03-29,15:00,38,Port Vale,Cheltenham,Stoke on Trent,Vale Park,To be played,
+2027-03-29,15:00,38,Swindon Town,Shrewsbury,Swindon,County Ground,To be played,
+2027-03-29,15:00,38,Accrington ST,Tranmere,Accrington,The Wham Stadium,To be played,
+2027-03-29,15:00,38,Colchester,Barnet,Colchester,,To be played,
+2027-03-29,15:00,38,Crewe,Fleetwood Town,Crewe,Alexandra Stadium,To be played,
+2027-03-29,15:00,38,Grimsby,Salford City,Cleethorpes,Blundell Park,To be played,
+2027-03-29,15:00,38,Newport County,Exeter City,Newport,Rodney Parade,To be played,
+2027-03-29,15:00,38,York,Oldham,York,York Community Stadium,To be played,
+2027-04-03,15:00,39,Rotherham,Accrington ST,Rotherham,Aesseal New York Stadium,To be played,
+2027-04-03,15:00,39,Bristol Rovers,Port Vale,Bristol,Memorial Stadium,To be played,
+2027-04-03,15:00,39,Fleetwood Town,York,Fleetwood,Highbury Stadium,To be played,
+2027-04-03,15:00,39,Chesterfield,Walsall,Chesterfield,SMH Group Stadium,To be played,
+2027-04-03,15:00,39,Oldham,Grimsby,Oldham,Boundary Park,To be played,
+2027-04-03,15:00,39,Shrewsbury,Newport County,Shrewsbury,The Croud Meadow,To be played,
+2027-04-03,15:00,39,Crawley Town,Colchester,Crawley,The Broadfield Stadium,To be played,
+2027-04-03,15:00,39,Exeter City,Swindon Town,Exeter,St James Park,To be played,
+2027-04-03,15:00,39,Barnet,Gillingham,London,The Hive Stadium,To be played,
+2027-04-03,15:00,39,Cheltenham,Northampton,Cheltenham,Whaddon Road,To be played,
+2027-04-03,15:00,39,Tranmere,Crewe,Birkenhead,Prenton Park,To be played,
+2027-04-03,15:00,39,Salford City,Rochdale,Salford,Peninsula Stadium,To be played,
+2027-04-10,15:00,40,Northampton,Barnet,Northampton,Sixfields Stadium,To be played,
+2027-04-10,15:00,40,Rochdale,Exeter City,Rochdale,Spotland Stadium,To be played,
+2027-04-10,15:00,40,Walsall,Rotherham,Walsall,Bescot Stadium,To be played,
+2027-04-10,15:00,40,Gillingham,Oldham,Gillingham,Priestfield Stadium,To be played,
+2027-04-10,15:00,40,Port Vale,Shrewsbury,Stoke on Trent,Vale Park,To be played,
+2027-04-10,15:00,40,Swindon Town,Fleetwood Town,Swindon,County Ground,To be played,
+2027-04-10,15:00,40,Accrington ST,Bristol Rovers,Accrington,The Wham Stadium,To be played,
+2027-04-10,15:00,40,Colchester,Salford City,Colchester,,To be played,
+2027-04-10,15:00,40,Crewe,Cheltenham,Crewe,Alexandra Stadium,To be played,
+2027-04-10,15:00,40,Grimsby,Chesterfield,Cleethorpes,Blundell Park,To be played,
+2027-04-10,15:00,40,Newport County,Crawley Town,Newport,Rodney Parade,To be played,
+2027-04-10,15:00,40,York,Tranmere,York,York Community Stadium,To be played,
+2027-04-13,19:45,41,Northampton,York,Northampton,Sixfields Stadium,To be played,
+2027-04-13,19:45,41,Rochdale,Tranmere,Rochdale,Spotland Stadium,To be played,
+2027-04-13,19:45,41,Walsall,Fleetwood Town,Walsall,Bescot Stadium,To be played,
+2027-04-13,19:45,41,Chesterfield,Crawley Town,Chesterfield,SMH Group Stadium,To be played,
+2027-04-13,19:45,41,Gillingham,Rotherham,Gillingham,Priestfield Stadium,To be played,
+2027-04-13,19:45,41,Accrington ST,Oldham,Accrington,The Wham Stadium,To be played,
+2027-04-13,19:45,41,Colchester,Newport County,Colchester,,To be played,
+2027-04-13,19:45,41,Crewe,Swindon Town,Crewe,Alexandra Stadium,To be played,
+2027-04-13,19:45,41,Exeter City,Shrewsbury,Exeter,St James Park,To be played,
+2027-04-13,19:45,41,Grimsby,Port Vale,Cleethorpes,Blundell Park,To be played,
+2027-04-13,19:45,41,Barnet,Bristol Rovers,London,The Hive Stadium,To be played,
+2027-04-13,19:45,41,Salford City,Cheltenham,Salford,Peninsula Stadium,To be played,
+2027-04-17,12:30,42,Oldham,Rochdale,Oldham,Boundary Park,To be played,
+2027-04-17,15:00,42,Rotherham,Northampton,Rotherham,Aesseal New York Stadium,To be played,
+2027-04-17,15:00,42,Bristol Rovers,Gillingham,Bristol,Memorial Stadium,To be played,
+2027-04-17,15:00,42,Fleetwood Town,Barnet,Fleetwood,Highbury Stadium,To be played,
+2027-04-17,15:00,42,Port Vale,Walsall,Stoke on Trent,Vale Park,To be played,
+2027-04-17,15:00,42,Shrewsbury,Crewe,Shrewsbury,The Croud Meadow,To be played,
+2027-04-17,15:00,42,Swindon Town,Salford City,Swindon,County Ground,To be played,
+2027-04-17,15:00,42,Crawley Town,Grimsby,Crawley,The Broadfield Stadium,To be played,
+2027-04-17,15:00,42,Newport County,Accrington ST,Newport,Rodney Parade,To be played,
+2027-04-17,15:00,42,Cheltenham,Colchester,Cheltenham,Whaddon Road,To be played,
+2027-04-17,15:00,42,Tranmere,Exeter City,Birkenhead,Prenton Park,To be played,
+2027-04-17,15:00,42,York,Chesterfield,York,York Community Stadium,To be played,
+2027-04-24,15:00,43,Northampton,Port Vale,Northampton,Sixfields Stadium,To be played,
+2027-04-24,15:00,43,Rochdale,Fleetwood Town,Rochdale,Spotland Stadium,To be played,
+2027-04-24,15:00,43,Walsall,Tranmere,Walsall,Bescot Stadium,To be played,
+2027-04-24,15:00,43,Chesterfield,Cheltenham,Chesterfield,SMH Group Stadium,To be played,
+2027-04-24,15:00,43,Gillingham,York,Gillingham,Priestfield Stadium,To be played,
+2027-04-24,15:00,43,Accrington ST,Swindon Town,Accrington,The Wham Stadium,To be played,
+2027-04-24,15:00,43,Colchester,Shrewsbury,Colchester,,To be played,
+2027-04-24,15:00,43,Crewe,Rotherham,Crewe,Alexandra Stadium,To be played,
+2027-04-24,15:00,43,Exeter City,Bristol Rovers,Exeter,St James Park,To be played,
+2027-04-24,15:00,43,Grimsby,Newport County,Cleethorpes,Blundell Park,To be played,
+2027-04-24,15:00,43,Barnet,Crawley Town,London,The Hive Stadium,To be played,
+2027-04-24,15:00,43,Salford City,Oldham,Salford,Peninsula Stadium,To be played,
+2027-04-27,19:45,44,Rotherham,Exeter City,Rotherham,Aesseal New York Stadium,To be played,
+2027-04-27,19:45,44,Bristol Rovers,Crewe,Bristol,Memorial Stadium,To be played,
+2027-04-27,19:45,44,Fleetwood Town,Salford City,Fleetwood,Highbury Stadium,To be played,
+2027-04-27,19:45,44,Oldham,Northampton,Oldham,Boundary Park,To be played,
+2027-04-27,19:45,44,Port Vale,Colchester,Stoke on Trent,Vale Park,To be played,
+2027-04-27,19:45,44,Shrewsbury,Grimsby,Shrewsbury,The Croud Meadow,To be played,
+2027-04-27,19:45,44,Swindon Town,Rochdale,Swindon,County Ground,To be played,
+2027-04-27,19:45,44,Crawley Town,Walsall,Crawley,The Broadfield Stadium,To be played,
+2027-04-27,19:45,44,Newport County,Gillingham,Newport,Rodney Parade,To be played,
+2027-04-27,19:45,44,Cheltenham,Accrington ST,Cheltenham,Whaddon Road,To be played,
+2027-04-27,19:45,44,Tranmere,Chesterfield,Birkenhead,Prenton Park,To be played,
+2027-04-27,19:45,44,York,Barnet,York,York Community Stadium,To be played,
+2027-05-01,15:00,45,Northampton,Walsall,Northampton,Sixfields Stadium,To be played,
+2027-05-01,15:00,45,Chesterfield,Swindon Town,Chesterfield,SMH Group Stadium,To be played,
+2027-05-01,15:00,45,Gillingham,Salford City,Gillingham,Priestfield Stadium,To be played,
+2027-05-01,15:00,45,Oldham,Rotherham,Oldham,Boundary Park,To be played,
+2027-05-01,15:00,45,Accrington ST,Fleetwood Town,Accrington,The Wham Stadium,To be played,
+2027-05-01,15:00,45,Crawley Town,Exeter City,Crawley,The Broadfield Stadium,To be played,
+2027-05-01,15:00,45,Grimsby,Crewe,Cleethorpes,Blundell Park,To be played,
+2027-05-01,15:00,45,Newport County,Port Vale,Newport,Rodney Parade,To be played,
+2027-05-01,15:00,45,Barnet,Rochdale,London,The Hive Stadium,To be played,
+2027-05-01,15:00,45,Cheltenham,Shrewsbury,Cheltenham,Whaddon Road,To be played,
+2027-05-01,15:00,45,Tranmere,Bristol Rovers,Birkenhead,Prenton Park,To be played,
+2027-05-01,15:00,45,York,Colchester,York,York Community Stadium,To be played,
+2027-05-08,15:00,46,Rotherham,Barnet,Rotherham,Aesseal New York Stadium,To be played,
+2027-05-08,15:00,46,Bristol Rovers,Oldham,Bristol,Memorial Stadium,To be played,
+2027-05-08,15:00,46,Fleetwood Town,Northampton,Fleetwood,Highbury Stadium,To be played,
+2027-05-08,15:00,46,Rochdale,Cheltenham,Rochdale,Spotland Stadium,To be played,
+2027-05-08,15:00,46,Walsall,Newport County,Walsall,Bescot Stadium,To be played,
+2027-05-08,15:00,46,Port Vale,Crawley Town,Stoke on Trent,Vale Park,To be played,
+2027-05-08,15:00,46,Shrewsbury,York,Shrewsbury,The Croud Meadow,To be played,
+2027-05-08,15:00,46,Swindon Town,Gillingham,Swindon,County Ground,To be played,
+2027-05-08,15:00,46,Colchester,Grimsby,Colchester,,To be played,
+2027-05-08,15:00,46,Crewe,Accrington ST,Crewe,Alexandra Stadium,To be played,
+2027-05-08,15:00,46,Exeter City,Chesterfield,Exeter,St James Park,To be played,
+2027-05-08,15:00,46,Salford City,Tranmere,Salford,Peninsula Stadium,To be played,
