@@ -16,16 +16,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out dashboard source
         uses: actions/checkout@v6
@@ -50,6 +43,36 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Wait for the uploaded website to become available
+        uses: actions/github-script@v8
+        with:
+          script: |
+            for (let attempt = 0; attempt < 12; attempt++) {
+              const response = await github.rest.actions.listWorkflowRunArtifacts({
+                ...context.repo,
+                run_id: context.runId,
+                name: "github-pages"
+              });
+              if (response.data.artifacts.some(artifact => !artifact.expired)) {
+                core.info("The website artifact is ready for deployment.");
+                return;
+              }
+              await new Promise(resolve => setTimeout(resolve, 5000));
+            }
+            core.setFailed("The website upload is not visible after 60 seconds. The previous site remains available.");
       - name: Publish the website
         id: deployment
         uses: actions/deploy-pages@v4
