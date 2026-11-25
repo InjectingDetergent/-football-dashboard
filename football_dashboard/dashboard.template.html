@@ -197,8 +197,8 @@
   </div>
   <div id="bets-view" hidden>
     <section class="panel bets-intro">
-      <div class="eyebrow">All four divisions</div><h2>Best bets</h2>
-      <p>Explore the strongest recent trends ahead of each club’s next listed fixture.</p>
+      <div class="eyebrow">All four divisions</div><h2 id="bets-title">Best Bets</h2>
+      <p id="bets-description">Explore the strongest recent trends ahead of each club’s next listed fixture.</p>
       <div class="bets-controls">
         <div><label for="bets-window">Venue matches</label> <select id="bets-window"><option value="5">Last 5</option><option value="10">Last 10</option><option value="20">Last 20</option></select></div>
         <div><label for="bets-minimum">Minimum sample per team</label> <select id="bets-minimum"><option value="3">3 matches</option><option value="5">5 matches</option><option value="1">1 match</option></select></div>
@@ -261,6 +261,7 @@ let sort = "rank";
 let tableRows = [];
 let recentOpen = false;
 let bestBets = false;
+let saturdayBets = false;
 let streaks = false;
 let streakSort = "unbeaten";
 let streakRows = [];
@@ -396,7 +397,7 @@ function render() {
   byId("league-view").hidden = bestBets || streaks;
   byId("bets-view").hidden = !bestBets;
   byId("streaks-view").hidden = !streaks;
-  byId("export").textContent = streaks ? "Download streaks CSV" : bestBets ? "Download best bets CSV" : "Download table CSV";
+  byId("export").textContent = streaks ? "Download streaks CSV" : saturdayBets ? "Download 3pm bets CSV" : bestBets ? "Download best bets CSV" : "Download table CSV";
   if (streaks) {
     renderStreaks();
     return;
@@ -470,7 +471,8 @@ function render() {
 function renderNavigation() {
   byId("leagues").innerHTML = Object.entries(data).map(([slug, info]) =>
     `<button type="button" data-league="${slug}" aria-pressed="${!bestBets && !streaks && league === slug}">${escape(info.name)}</button>`).join("") +
-    `<button type="button" data-league="best-bets" aria-pressed="${bestBets}">Best Bets</button>
+    `<button type="button" data-league="best-bets" aria-pressed="${bestBets && !saturdayBets}">Best Bets</button>
+     <button type="button" data-league="3pm-bets" aria-pressed="${saturdayBets}">3pm Bets</button>
      <button type="button" data-league="streaks" aria-pressed="${streaks}">Streaks</button>`;
   byId("season").innerHTML = Object.keys(data[league].seasons).map(value =>
     `<option value="${value}"${value === season ? " selected" : ""}>${seasonText(value)}</option>`).join("");
@@ -579,10 +581,19 @@ function betsTable(headers, rows, label) {
     <tbody>${rows.map(row => `<tr>${row}</tr>`).join("")}</tbody></table></div>`;
 }
 
+function isSaturdayThreePm(match) {
+  return match[1].trim() === "15:00" && new Date(match[0] + "T00:00:00Z").getUTCDay() === 6;
+}
+
 function renderBets() {
   const windowSize = Number(byId("bets-window").value);
   const minimum = Number(byId("bets-minimum").value);
-  const fixtures = betFixtures(windowSize);
+  const fixtures = betFixtures(windowSize).filter(item => !saturdayBets || isSaturdayThreePm(item.match));
+  byId("bets-title").textContent = saturdayBets ? "3pm Bets" : "Best Bets";
+  byId("shortlist-title").textContent = saturdayBets ? "3pm Bets shortlist" : "Best Bets shortlist";
+  byId("bets-description").textContent = saturdayBets ?
+    "The same venue form and goal trends, restricted to next fixtures listed for Saturday at 15:00 UK time." :
+    "Explore the strongest recent trends ahead of each club’s next listed fixture.";
   const eligible = fixtures.filter(item => item.home.n >= minimum && item.away.n >= minimum);
   const missingLeagues = Object.values(data).filter(info => !info.seasons[season]).length;
   const groups = Object.values(data).map(info => info.seasons[season]).filter(Boolean);
@@ -658,7 +669,8 @@ function renderBets() {
 byId("leagues").addEventListener("click", event => {
   const next = event.target.dataset.league;
   if (!next) return;
-  bestBets = next === "best-bets";
+  saturdayBets = next === "3pm-bets";
+  bestBets = next === "best-bets" || saturdayBets;
   streaks = next === "streaks";
   if (!bestBets && !streaks) {
     league = next;
@@ -705,7 +717,7 @@ byId("export").addEventListener("click", () => {
   }
   if (bestBets) {
     downloadCsv(["Market", "League", "Season", "Date", "Time", "Home team", "Away team", "Venue window",
-      "Home hits", "Home sample", "Away hits", "Away sample", "Trend score"], betsExport, `best-bets-${season}.csv`);
+      "Home hits", "Home sample", "Away hits", "Away sample", "Trend score"], betsExport, `${saturdayBets ? "3pm-bets" : "best-bets"}-${season}.csv`);
     return;
   }
   const header = ["League", "Season", "Rank", "Club", "Played", "Won", "Drawn", "Lost", "Goals for",
