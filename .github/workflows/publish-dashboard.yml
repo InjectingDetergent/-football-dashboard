@@ -40,6 +40,8 @@ jobs:
           key: football-results-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             football-results-
+      - name: Install simulation dependencies
+        run: python -m pip install -r football_dashboard/requirements.txt
       - name: Download results and build the website
         run: python football_dashboard/build_dashboard.py --refresh-results --output dist/index.html
       - name: Configure GitHub Pages

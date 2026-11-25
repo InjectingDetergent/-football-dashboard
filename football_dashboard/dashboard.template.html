@@ -111,6 +111,11 @@
   .bets-table .fixture-cell strong, .bets-table .fixture-cell small { display: block; }
   .bets-table .fixture-cell small { color: var(--muted); font-size: 11px; }
   .bets-wide { margin-top: 16px; }
+  .prediction-chart { padding: 12px; }
+  .prediction-chart svg { display: block; max-width: none; }
+  .prediction-legend { display: flex; gap: 18px; flex-wrap: wrap; padding: 0 17px 12px; color: var(--muted); font-size: 12px; }
+  .prediction-key { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; }
+  .chart-button { border: 1px solid #b9c9be; border-radius: 7px; padding: 6px 10px; background: white; color: var(--green); font-weight: 650; }
   @media (max-width: 1130px) {
     .summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .layout { grid-template-columns: minmax(0, 1fr); }
@@ -236,6 +241,35 @@
       </div>
     </div>
   </section>
+  <section id="predictions-view" hidden aria-labelledby="predictions-title">
+    <div class="panel bets-intro">
+      <div class="eyebrow">20,000 simulated seasons per division</div>
+      <h2 id="predictions-title">Season Predictions</h2>
+      <p>Explore finishing-position probabilities and projected final points.</p>
+      <div class="bets-controls"><div><label for="prediction-league">Division</label> <select id="prediction-league"></select></div></div>
+      <p class="note" id="prediction-status"></p>
+    </div>
+    <p class="coverage bets-wide" id="prediction-unavailable" hidden></p>
+    <div id="prediction-charts">
+      <section class="panel bets-wide">
+        <div class="section-head"><div><h2>Predicted final league position</h2><p class="note">Rows follow current standings. Darker cells indicate higher probability. Hover over a cell for its exact simulation count.</p></div><button class="chart-button" data-chart="position-chart">Download SVG</button></div>
+        <div class="scroll prediction-chart" id="position-chart" tabindex="0" role="region" aria-label="Finishing-position probability chart"></div>
+        <p class="note legend">Probabilities below 0.1% are unlabelled. Unrounded probabilities sum to 100% across each row and each position.</p>
+      </section>
+      <section class="panel bets-wide">
+        <div class="section-head"><div><h2>Predicted final points</h2><p class="note">Teams ordered by average simulated final points. The pale line covers the middle 80% of simulated points totals.</p></div><button class="chart-button" data-chart="points-chart">Download SVG</button></div>
+        <div class="prediction-legend"><span><i class="prediction-key" style="background:#6b3fc5"></i>Current points</span><span><i class="prediction-key" style="background:#cf3c55"></i>Average final points</span></div>
+        <div class="scroll prediction-chart" id="points-chart" tabindex="0" role="region" aria-label="Current and projected final points chart"></div>
+      </section>
+      <details class="panel bets-intro bets-wide"><summary>Model and assumptions</summary>
+        <p class="note" id="prediction-model"></p>
+        <p class="note" id="prediction-validation"></p>
+        <p class="note">Each division is fitted separately to this season’s completed league matches, with opponent attack and defence strengths and home advantage. More recent matches receive greater weight, with a 90-day half-life. Team strengths are pulled towards the division average to reduce the effect of small samples.</p>
+        <p class="note">Remaining matches are simulated with independent Poisson goal counts and fixed fitted strengths. Missing xG uses actual goals. Current points adjustments are retained. Positions use points, goal difference and goals scored; any remaining ties are split randomly. Injuries, transfers, future deductions and later tie-break criteria are outside this first model.</p>
+        <p class="note">The points ranges reflect simulated match outcomes with fixed strengths. They do not include uncertainty in the estimated strengths. Model choices use one chronological holdout and have not been validated across multiple seasons. Regular-season finishing positions are shown; play-off outcomes are outside this simulation.</p>
+      </details>
+    </div>
+  </section>
 </main>
 <script type="application/json" id="match-data">/* DASHBOARD_DATA */</script>
 <script>
@@ -263,6 +297,8 @@ let recentOpen = false;
 let bestBets = false;
 let saturdayBets = false;
 let streaks = false;
+let predictions = false;
+let predictionLeague = league;
 let streakSort = "unbeaten";
 let streakRows = [];
 const streakLabels = {
@@ -394,10 +430,16 @@ function renderClub() {
 }
 
 function render() {
-  byId("league-view").hidden = bestBets || streaks;
+  byId("league-view").hidden = bestBets || streaks || predictions;
   byId("bets-view").hidden = !bestBets;
   byId("streaks-view").hidden = !streaks;
-  byId("export").textContent = streaks ? "Download streaks CSV" : saturdayBets ? "Download 3pm bets CSV" : bestBets ? "Download best bets CSV" : "Download table CSV";
+  byId("predictions-view").hidden = !predictions;
+  byId("export").textContent = predictions ? "Download predictions CSV" : streaks ? "Download streaks CSV" : saturdayBets ? "Download 3pm bets CSV" : bestBets ? "Download best bets CSV" : "Download table CSV";
+  byId("export").disabled = false;
+  if (predictions) {
+    renderPredictions();
+    return;
+  }
   if (streaks) {
     renderStreaks();
     return;
@@ -470,13 +512,129 @@ function render() {
 
 function renderNavigation() {
   byId("leagues").innerHTML = Object.entries(data).map(([slug, info]) =>
-    `<button type="button" data-league="${slug}" aria-pressed="${!bestBets && !streaks && league === slug}">${escape(info.name)}</button>`).join("") +
+    `<button type="button" data-league="${slug}" aria-pressed="${!bestBets && !streaks && !predictions && league === slug}">${escape(info.name)}</button>`).join("") +
     `<button type="button" data-league="best-bets" aria-pressed="${bestBets && !saturdayBets}">Best Bets</button>
      <button type="button" data-league="3pm-bets" aria-pressed="${saturdayBets}">3pm Bets</button>
-     <button type="button" data-league="streaks" aria-pressed="${streaks}">Streaks</button>`;
+     <button type="button" data-league="streaks" aria-pressed="${streaks}">Streaks</button>
+     <button type="button" data-league="predictions" aria-pressed="${predictions}">Season Predictions</button>`;
   byId("season").innerHTML = Object.keys(data[league].seasons).map(value =>
     `<option value="${value}"${value === season ? " selected" : ""}>${seasonText(value)}</option>`).join("");
 }
+
+function predictionSvg(width, height, label, content) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"
+    role="img" aria-label="${escape(label)}" style="font-family:Segoe UI,Arial,sans-serif">
+    <title>${escape(label)}</title><rect width="100%" height="100%" fill="white"/>${content}</svg>`;
+}
+
+function positionChart(prediction, title) {
+  const rows = [...prediction.teams].sort((a, b) => a.current_position - b.current_position);
+  const left = 310, cell = 34, top = 100, line = 29;
+  const width = left + rows.length * cell + 15;
+  const height = top + rows.length * line + 38;
+  let content = `<text x="12" y="25" font-size="20" font-weight="700" fill="#14271e">Predicted final league position</text>
+    <text x="12" y="47" font-size="13" fill="#53655c">${escape(title)} · results through ${prediction.as_of} · ${prediction.simulations.toLocaleString()} simulations</text>`;
+  for (const [label, x] of [["Club", 12], ["Pos", 226], ["P", 254], ["Pts", 285]]) {
+    content += `<text x="${x}" y="85" font-size="12" fill="#53655c">${label}</text>`;
+  }
+  rows.forEach((row, index) => {
+    const y = top + index * line;
+    content += `<text x="${left + index * cell + cell / 2}" y="85" text-anchor="middle" font-size="12" fill="#53655c">${index + 1}</text>
+      <text x="12" y="${y + 19}" font-size="13" font-weight="600" fill="#14271e">${escape(row.team)}</text>
+      <text x="238" y="${y + 19}" text-anchor="middle" font-size="12" fill="#53655c">${row.current_position}</text>
+      <text x="257" y="${y + 19}" text-anchor="middle" font-size="12" fill="#53655c">${row.played}</text>
+      <text x="293" y="${y + 19}" text-anchor="middle" font-size="12" fill="#53655c">${row.current_points}</text>`;
+    row.position_counts.forEach((count, position) => {
+      const p = count / prediction.simulations;
+      const strength = Math.sqrt(p);
+      const rgb = [255 - 48 * strength, 255 - 195 * strength, 255 - 170 * strength].map(Math.round);
+      const x = left + position * cell;
+      const percentage = 100 * p;
+      const label = percentage >= 99.95 ? "100" : percentage.toFixed(1);
+      content += `<g><title>${escape(row.team)} · position ${position + 1} · ${percentage.toFixed(3)}% (${count}/${prediction.simulations})</title>
+        <rect x="${x}" y="${y}" width="${cell - 1}" height="${line - 1}" fill="rgb(${rgb.join(",")})"/>
+        ${percentage >= .1 ? `<text x="${x + cell / 2}" y="${y + 19}" text-anchor="middle" font-size="11" fill="${p > .45 ? "white" : "#38212a"}">${label}</text>` : ""}</g>`;
+    });
+  });
+  content += `<text x="12" y="${height - 12}" font-size="11" fill="#53655c">Darker cells show higher probability. Each row covers all final positions.</text>`;
+  return predictionSvg(width, height, title + " finishing-position probabilities", content);
+}
+
+function pointsChart(prediction, title) {
+  const rows = [...prediction.teams].sort((a, b) => b.mean_points - a.mean_points || a.team.localeCompare(b.team));
+  const width = 1040, left = 220, top = 105, line = 37, plotWidth = 735;
+  const height = top + rows.length * line + 45;
+  const low = Math.floor(Math.min(...rows.map(row => row.current_points)) / 10) * 10;
+  const high = Math.ceil(Math.max(...rows.map(row => row.points_high), low + 10) / 10) * 10;
+  const x = value => left + (value - low) / (high - low) * plotWidth;
+  let content = `<text x="12" y="25" font-size="20" font-weight="700" fill="#14271e">Predicted final points</text>
+    <text x="12" y="47" font-size="13" fill="#53655c">${escape(title)} · results through ${prediction.as_of}</text>
+    <text x="12" y="69" font-size="12" fill="#6b3fc5">● Current points</text><text x="160" y="69" font-size="12" fill="#cf3c55">● Average final points</text>
+    <text x="365" y="69" font-size="12" fill="#53655c">Pale band · middle 80% of simulated totals</text>`;
+  for (let tick = low; tick <= high; tick += 10) {
+    content += `<line x1="${x(tick)}" x2="${x(tick)}" y1="${top - 18}" y2="${height - 40}" stroke="#e4ebe6"/>
+      <text x="${x(tick)}" y="${height - 18}" text-anchor="middle" font-size="12" fill="#53655c">${tick}</text>`;
+  }
+  rows.forEach((row, index) => {
+    const y = top + index * line;
+    content += `<g><title>${escape(row.team)} · current ${row.current_points} · average final ${row.mean_points.toFixed(1)} · 80% range ${row.points_low}–${row.points_high}</title>
+      <line x1="${left}" x2="${left + plotWidth}" y1="${y}" y2="${y}" stroke="#edf1ed"/>
+      <text x="12" y="${y + 4}" font-size="13" fill="#14271e">${escape(row.team)}</text>
+      <line x1="${x(row.points_low)}" x2="${x(row.points_high)}" y1="${y}" y2="${y}" stroke="#f4cbd3" stroke-width="12" stroke-linecap="round"/>
+      <line x1="${x(row.current_points)}" x2="${x(row.mean_points)}" y1="${y}" y2="${y}" stroke="#7c8a81" stroke-width="1.5"/>
+      <circle cx="${x(row.current_points)}" cy="${y}" r="13" fill="#6b3fc5"/>
+      <text x="${x(row.current_points)}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="white">${row.current_points}</text>
+      <circle cx="${x(row.mean_points)}" cy="${y}" r="17" fill="#cf3c55"/>
+      <text x="${x(row.mean_points)}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="white">${row.mean_points.toFixed(1)}</text></g>`;
+  });
+  return predictionSvg(width, height, title + " current and projected final points", content);
+}
+
+function renderPredictions() {
+  byId("prediction-league").innerHTML = Object.entries(data).map(([slug, info]) =>
+    `<option value="${slug}"${slug === predictionLeague ? " selected" : ""}>${escape(info.name)}</option>`).join("");
+  const prediction = data[predictionLeague].seasons[season]?.prediction;
+  const unavailable = !prediction?.teams;
+  byId("prediction-charts").hidden = unavailable;
+  byId("prediction-unavailable").hidden = !unavailable;
+  byId("export").disabled = unavailable;
+  byId("prediction-status").textContent = seasonText(season);
+  if (unavailable) {
+    byId("prediction-unavailable").textContent = prediction?.unavailable || "Predictions are generated for the latest season. Select that season to see the simulation.";
+    return;
+  }
+  const title = data[predictionLeague].name + " " + seasonText(season);
+  byId("prediction-status").textContent = `${title} · Results through ${dayLabel(prediction.as_of)} ${prediction.as_of.slice(0, 4)} · ${prediction.simulations.toLocaleString()} simulations · ${prediction.remaining} remaining matches · xG available for ${prediction.xg_matches}/${prediction.played} completed matches.` +
+    (prediction.overdue ? ` Includes ${prediction.overdue} unresolved fixtures dated on or before the latest result.` : "");
+  byId("position-chart").innerHTML = positionChart(prediction, title);
+  byId("points-chart").innerHTML = pointsChart(prediction, title);
+  byId("prediction-model").textContent = prediction.xg_weight ?
+    "Selected model uses 70% xG and 30% actual goals as its scoring signal." :
+    "Selected model uses actual goals as its scoring signal.";
+  const validation = prediction.validation;
+  byId("prediction-validation").textContent = validation.models.length ?
+    `Chronological check trained on ${validation.training_matches} earlier matches and evaluated ${validation.holdout_matches} later matches from ${validation.cutoff}. Average score log loss (lower is better): ` +
+      validation.models.map(model => (model.xg_weight ? "xG blend " : "Goals only ") + model.score_log_loss.toFixed(3)).join("; ") +
+      ". The lower-loss model was then refitted on all available results. Seed " + prediction.seed + "." :
+    "There are too few earlier results for a holdout comparison. The goals-only model is used. Seed " + prediction.seed + ".";
+}
+
+byId("prediction-league").addEventListener("change", event => {
+  predictionLeague = event.target.value;
+  renderPredictions();
+});
+byId("predictions-view").addEventListener("click", event => {
+  const chart = event.target.dataset.chart;
+  if (!chart) return;
+  const svg = byId(chart).querySelector("svg");
+  if (!svg) return;
+  const url = URL.createObjectURL(new Blob([svg.outerHTML], {type: "image/svg+xml;charset=utf-8"}));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${predictionLeague}-${season}-${chart}.svg`;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
 
 function currentRun(results, stopResult) {
   if (!results.length) return null;
@@ -672,7 +830,8 @@ byId("leagues").addEventListener("click", event => {
   saturdayBets = next === "3pm-bets";
   bestBets = next === "best-bets" || saturdayBets;
   streaks = next === "streaks";
-  if (!bestBets && !streaks) {
+  predictions = next === "predictions";
+  if (!bestBets && !streaks && !predictions) {
     league = next;
     if (!data[league].seasons[season]) season = Object.keys(data[league].seasons)[0];
   }
@@ -709,6 +868,19 @@ byId("table-body").addEventListener("click", event => {
 });
 
 byId("export").addEventListener("click", () => {
+  if (predictions) {
+    const prediction = data[predictionLeague].seasons[season]?.prediction;
+    if (!prediction?.teams) return;
+    const rows = [...prediction.teams].sort((a, b) => b.mean_points - a.mean_points);
+    downloadCsv(["Club", "Division", "Season", "Results through", "Current position", "Played", "Current points",
+      "Average final points", "Points 10th percentile", "Points 90th percentile", "Average final position",
+      ...rows.map((_, index) => "Finish " + (index + 1) + " (%)")],
+      rows.map(row => [row.team, data[predictionLeague].name, seasonText(season), prediction.as_of,
+        row.current_position, row.played, row.current_points, row.mean_points.toFixed(2), row.points_low,
+        row.points_high, row.mean_position.toFixed(2), ...row.position_counts.map(n => (100 * n / prediction.simulations).toFixed(3))]),
+      `season-predictions-${predictionLeague}-${season}.csv`);
+    return;
+  }
   if (streaks) {
     downloadCsv(["Club", "Division", "Season", ...Object.values(streakLabels).map(label => label + " (games)")],
       streakRows.map(row => [row.name, row.division, seasonText(season), ...Object.keys(streakLabels).map(key => row[key] ?? "")]),

@@ -4,6 +4,7 @@ import argparse
 import csv
 import io
 import json
+import math
 import re
 from collections import defaultdict
 from datetime import UTC, date, datetime
@@ -56,7 +57,13 @@ def result(row):
     goals = [int(row[field]) for field in ("FTHG", "FTAG")]
     if min(goals) < 0:
         raise ValueError("negative goal count")
-    return day.isoformat(), row.get("Time", "").strip(), home, away, *goals, "Played"
+    xg = [row.get(field, "").strip() for field in ("HxG", "AxG")]
+    values = [None, None]
+    if all(xg):
+        values = [float(value) for value in xg]
+        if any(not math.isfinite(value) or value < 0 for value in values):
+            raise ValueError("invalid expected goals")
+    return day.isoformat(), row.get("Time", "").strip(), home, away, *goals, "Played", *values
 
 
 def fixture(row):
@@ -97,6 +104,10 @@ def build(downloaded=None):
             return
         if previous and previous[6] == match[6] == "Played" and previous[4:6] != match[4:6]:
             conflicts[bucket] += 1
+        match = tuple(match[:7]) + tuple(match[7:9] or (None, None))
+        if previous and len(previous) >= 9 and all(value is not None for value in previous[7:9]):
+            if any(value is None for value in match[7:9]):
+                match = match[:7] + tuple(previous[7:9])
         matches[bucket][key] = match
         sources[bucket].add(path.name)
 
@@ -235,6 +246,14 @@ def main():
         downloaded[season] = snapshot
 
     data = build(downloaded)
+    try:
+        from season_simulation import simulate_season
+    except ModuleNotFoundError as exc:
+        raise ValueError("Install simulation dependencies with: python -m pip install -r football_dashboard/requirements.txt") from exc
+    for slug, league in data.items():
+        latest = max(league["seasons"])
+        league["seasons"][latest]["prediction"] = simulate_season(
+            league["seasons"][latest], seed=20261125 + list(LEAGUES).index(slug))
     encoded = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
     template = (HERE / "dashboard.template.html").read_text(encoding="utf-8")
     output = options.output.resolve()
