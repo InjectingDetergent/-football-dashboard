@@ -1,0 +1,98 @@
+[
+  {
+    "league": "championship",
+    "season": "2026-27",
+    "verified_on": "2026-11-26",
+    "source": "https://www.footballwebpages.co.uk/championship/fixtures-results",
+    "matches": [
+      ["2026-11-24","19:45","Bristol City","Wrexham",1,1,"Played"],
+      ["2026-11-24","19:45","Cardiff","Preston",0,4,"Played"],
+      ["2026-11-24","19:45","Charlton","Lincoln",4,0,"Played"],
+      ["2026-11-24","19:45","Middlesbrough","Swansea",2,1,"Played"],
+      ["2026-11-24","19:45","Norwich","QPR",1,1,"Played"],
+      ["2026-11-24","19:45","Portsmouth","West Ham",1,0,"Played"],
+      ["2026-11-24","19:45","Sheffield United","Southampton",1,1,"Played"],
+      ["2026-11-24","20:00","Wolves","Derby",3,0,"Played"],
+      ["2026-11-25","19:45","Bolton","West Brom",1,3,"Played"],
+      ["2026-11-25","19:45","Burnley","Birmingham",0,2,"Played"],
+      ["2026-11-25","19:45","Stoke City","Millwall",2,1,"Played"],
+      ["2026-11-25","19:45","Watford","Blackburn",0,1,"Played"],
+      ["2026-11-27","20:00","Southampton","Middlesbrough",null,null,"To be played"],
+      ["2026-11-28","15:00","Birmingham","Bolton",null,null,"To be played"],
+      ["2026-11-28","12:30","Blackburn","Charlton",null,null,"To be played"],
+      ["2026-11-28","15:00","Derby","Watford",null,null,"To be played"],
+      ["2026-11-28","12:30","Lincoln","Wolves",null,null,"To be played"],
+      ["2026-11-28","15:00","Millwall","Burnley",null,null,"To be played"],
+      ["2026-11-28","12:30","Preston","Norwich",null,null,"To be played"],
+      ["2026-11-28","15:00","QPR","Sheffield United",null,null,"To be played"],
+      ["2026-11-28","15:00","West Brom","Bristol City",null,null,"To be played"],
+      ["2026-11-28","15:00","West Ham","Stoke City",null,null,"To be played"],
+      ["2026-11-28","15:00","Wrexham","Portsmouth",null,null,"To be played"],
+      ["2026-11-29","12:00","Swansea","Cardiff",null,null,"To be played"]
+    ]
+  },
+  {
+    "league": "league-one",
+    "season": "2026-27",
+    "verified_on": "2026-11-26",
+    "source": "https://www.footballwebpages.co.uk/league-one/fixtures-results",
+    "matches": [
+      ["2026-11-24","19:45","Blackpool","Leicester",1,1,"Played"],
+      ["2026-11-24","19:45","Bradford","Barnsley",3,0,"Played"],
+      ["2026-11-24","19:45","Bromley","Wycombe",1,1,"Played"],
+      ["2026-11-24","19:45","Stevenage","Sheffield Weds",0,0,"Played"],
+      ["2026-11-26","20:00","Doncaster","Huddersfield",null,null,"To be played"],
+      ["2026-11-28","15:00","AFC Wimbledon","Barnsley",null,null,"To be played"],
+      ["2026-11-28","15:00","Bromley","Burton",null,null,"To be played"],
+      ["2026-11-28","15:00","Leicester","Mansfield",null,null,"To be played"],
+      ["2026-11-28","15:00","Luton","Oxford",null,null,"To be played"],
+      ["2026-11-28","12:30","Milton Keynes Dons","Notts County",null,null,"To be played"],
+      ["2026-11-28","12:30","Peterboro","Cambridge",null,null,"To be played"],
+      ["2026-11-28","15:00","Sheffield Weds","Reading",null,null,"To be played"],
+      ["2026-11-28","15:00","Stevenage","Blackpool",null,null,"To be played"],
+      ["2026-11-28","15:00","Stockport","Leyton Orient",null,null,"To be played"],
+      ["2026-11-28","15:00","Wigan","Plymouth",null,null,"To be played"],
+      ["2026-11-28","15:00","Wycombe","Bradford",null,null,"To be played"]
+    ]
+  },
+  {
+    "league": "league-two",
+    "season": "2026-27",
+    "verified_on": "2026-11-26",
+    "source": "https://www.footballwebpages.co.uk/league-two/fixtures-results",
+    "matches": [
+      ["2026-11-24","19:45","Crawley Town","Barnet",0,0,"Played"],
+      ["2026-11-24","19:45","Port Vale","Northampton",1,1,"Played"],
+      ["2026-11-28","12:30","Bristol Rvs","Tranmere",null,null,"To be played"],
+      ["2026-11-28","15:00","Colchester","York",null,null,"To be played"],
+      ["2026-11-28","15:00","Crewe","Grimsby",null,null,"To be played"],
+      ["2026-11-28","12:30","Exeter","Crawley Town",null,null,"To be played"],
+      ["2026-11-28","15:00","Fleetwood Town","Accrington",null,null,"To be played"],
+      ["2026-11-28","15:00","Port Vale","Newport County",null,null,"To be played"],
+      ["2026-11-28","15:00","Rochdale","Barnet",null,null,"To be played"],
+      ["2026-11-28","15:00","Rotherham","Oldham",null,null,"To be played"],
+      ["2026-11-28","15:00","Salford","Gillingham",null,null,"To be played"],
+      ["2026-11-28","15:00","Shrewsbury","Cheltenham",null,null,"To be played"],
+      ["2026-11-28","15:00","Swindon","Chesterfield",null,null,"To be played"],
+      ["2026-11-28","15:00","Walsall","Northampton",null,null,"To be played"]
+    ]
+  },
+  {
+    "league": "premier-league",
+    "season": "2026-27",
+    "verified_on": "2026-11-26",
+    "source": "https://www.footballwebpages.co.uk/premier-league/fixtures-results",
+    "matches": [
+      ["2026-11-27","20:00","Nott'm Forest","Chelsea",null,null,"To be played"],
+      ["2026-11-28","17:30","Ipswich","Aston Villa",null,null,"To be played"],
+      ["2026-11-28","15:00","Leeds","Coventry",null,null,"To be played"],
+      ["2026-11-28","15:00","Man United","Brentford",null,null,"To be played"],
+      ["2026-11-29","16:30","Arsenal","Man City",null,null,"To be played"],
+      ["2026-11-29","14:05","Brighton","Newcastle",null,null,"To be played"],
+      ["2026-11-29","14:05","Crystal Palace","Hull",null,null,"To be played"],
+      ["2026-11-29","12:00","Everton","Liverpool",null,null,"To be played"],
+      ["2026-11-29","14:05","Fulham","Bournemouth",null,null,"To be played"],
+      ["2026-11-29","14:05","Sunderland","Tottenham",null,null,"To be played"]
+    ]
+  }
+]

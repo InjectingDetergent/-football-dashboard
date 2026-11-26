@@ -210,6 +210,7 @@
       </div>
       <p class="note">Home form uses home results and away form uses away results from the selected season. Form runs oldest to newest. Counts show the actual sample available. These are historical trend rankings. Betting value requires current odds.</p>
       <p class="note" id="bets-coverage"></p>
+      <p class="note" id="bets-verified" hidden></p>
     </section>
     <section class="panel bets-wide" aria-labelledby="shortlist-title">
       <div class="section-head"><div><h2 id="shortlist-title">Best bets shortlist</h2><p class="note">Up to five candidates per market, ordered by trend score within each market.</p></div></div>
@@ -500,6 +501,11 @@ function render() {
   byId("coverage").textContent = notices.join(" ");
   byId("coverage").hidden = !notices.length;
   byId("sources").textContent = "This view uses " + group.sources.join(" and ") + ".";
+  if (group.verified_sources?.length) {
+    byId("sources").insertAdjacentHTML("beforeend", " Verified results and fixture updates from " +
+      group.verified_sources.map(url => `<a href="${escape(url)}" target="_blank" rel="noopener">Football Web Pages</a>`).join(", ") +
+      `. ${group.verified_results} completed matches supplement the results feed. Missing xG uses actual goals in the simulation.`);
+  }
   const checked = byId("results-checked");
   checked.hidden = !group.results_checked;
   if (group.results_checked) {
@@ -755,6 +761,11 @@ function renderBets() {
   const eligible = fixtures.filter(item => item.home.n >= minimum && item.away.n >= minimum);
   const missingLeagues = Object.values(data).filter(info => !info.seasons[season]).length;
   const groups = Object.values(data).map(info => info.seasons[season]).filter(Boolean);
+  const supplemental = groups.reduce((n, group) => n + (group.verified_results || 0), 0);
+  const verifiedDate = groups.map(group => group.verified_checked).filter(Boolean).sort().at(-1);
+  byId("bets-verified").hidden = !supplemental;
+  byId("bets-verified").textContent = supplemental ?
+    `Includes ${supplemental} verified results supplementing the main feed. Weekend kick-off updates were checked against Football Web Pages${verifiedDate ? " on " + dayLabel(verifiedDate) + " " + verifiedDate.slice(0, 4) : ""}. Sources are linked under each division’s Data and refresh section.` : "";
   const latest = groups.flatMap(group => group.matches.filter(played).slice(-1).map(match => match[0])).sort();
   const overdue = groups.reduce((n, group) => n + group.matches.filter(match => match[6] === "To be played" && match[0] < today).length, 0);
   byId("bets-coverage").textContent = `${seasonText(season)} · ${fixtures.length} next fixtures · ${eligible.length} with enough venue results for both clubs.` +

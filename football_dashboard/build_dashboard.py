@@ -18,6 +18,7 @@ HERE = Path(__file__).resolve().parent
 SOURCE = HERE.parent
 RESULTS_CACHE = HERE / "football-data-results.json"
 RESULTS_SOURCE = "Football-Data.co.uk"
+VERIFIED_UPDATES = HERE / "verified-match-updates.json"
 POINTS_ADJUSTMENTS = {("championship", "2026-27"): {"Southampton": -4}}
 LEAGUES = {
     "premier-league": ("Premier League", "Prem", "Prem", "E0"),
@@ -95,6 +96,10 @@ def build(downloaded=None):
     matches = defaultdict(dict)
     sources = defaultdict(set)
     conflicts = defaultdict(int)
+    verified_sources = defaultdict(set)
+    verified_results = defaultdict(int)
+    verified_checked = {}
+    updates = json.loads(VERIFIED_UPDATES.read_text(encoding="utf-8")) if VERIFIED_UPDATES.exists() else []
 
     def add(slug, season, match, path):
         bucket = (slug, season)
@@ -155,6 +160,33 @@ def build(downloaded=None):
             for match in snapshot["leagues"][slug]:
                 add(slug, season, tuple(match), Path(RESULTS_SOURCE))
 
+        for update in updates:
+            if update["league"] != slug:
+                continue
+            season = update["season"]
+            checked = date.fromisoformat(update["verified_on"]).isoformat()
+            for record in update["matches"]:
+                match = tuple(record[:2]) + tuple(team(name) for name in record[2:4]) + tuple(record[4:])
+                date.fromisoformat(match[0])
+                key = match[2:4]
+                previous = matches[slug, season].get(key)
+                if not previous:
+                    raise ValueError(f"Verified update has an unknown fixture: {slug} {key}")
+                if match[6] not in {"Played", "To be played", "Postponed"}:
+                    raise ValueError(f"Invalid verified fixture status: {match[6]}")
+                if match[6] == "Played" and any(type(goal) is not int or goal < 0 for goal in match[4:6]):
+                    raise ValueError(f"Invalid verified score: {key}")
+                # The results feed takes over when it catches up with a verified score.
+                if previous[6] == "Played":
+                    continue
+                if match[6] == "Played":
+                    kickoff = previous[1] if previous[0] == match[0] else ""
+                    match = match[:1] + (kickoff,) + match[2:]
+                add(slug, season, match, VERIFIED_UPDATES)
+                verified_sources[slug, season].add(update["source"])
+                verified_results[slug, season] += match[6] == "Played"
+                verified_checked[slug, season] = max(checked, verified_checked.get((slug, season), ""))
+
     if not matches:
         raise ValueError("No matching CSV exports found beside the football_dashboard folder.")
     data = {}
@@ -166,6 +198,9 @@ def build(downloaded=None):
                 "conflicts": conflicts[slug, season],
                 "points_adjustments": POINTS_ADJUSTMENTS.get((slug, season), {}),
                 "results_checked": (downloaded or {}).get(season, {}).get("checked"),
+                "verified_sources": sorted(verified_sources[slug, season]),
+                "verified_results": verified_results[slug, season],
+                "verified_checked": verified_checked.get((slug, season)),
             }
             for league, season in sorted(matches, reverse=True)
             if league == slug
